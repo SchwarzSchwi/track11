@@ -1,0 +1,475 @@
+	*{
+		margin:0;
+		padding:0;
+	}
+	a{
+		font: 13px "nanum";
+		text-decoration:none;
+		color:#22221f;
+	}	
+
+	li{list-style-type:none}
+	@font-face{
+		font-family:"nanum";
+		src:url("../font/NanumGothic.woff");
+	}
+	@font-face{
+		font-family:"nanum_bold";
+		src:url("../font/NanumGothicExtraBold.woff");
+	}
+	body{
+		background:url("../images/sub_top_back.jpg") repeat-x 0px 22px;
+	}	
+	
+	
+	#container{
+		margin:0 auto;
+		width:1024px;
+	}
+	#b_top_menu{
+		width:1024px;
+		height:22px;
+	}
+	#b_top{
+		width:1024px;
+		height:200px;
+		margin-bottom:22px;
+		background:url("../images/sub_background_1.jpg"); 
+	}
+	#b_left{
+		float:left;
+		width:250px;
+		height:500px;
+	}
+	#b_right{
+		float:right;
+		width:704px;
+		padding:20px;
+		margin-bottom:10px;
+	}
+
+	#footer_div{
+		clear:both;
+		width:100%;
+		background:#282828;
+	}
+	#footer{
+		margin:0 auto;
+		width:1024px;
+		height:120px;	
+		margin-top:40px;
+		background:#282828;
+	}
+
+
+	.top_menu li{
+		float:right;
+	}
+	.top_menu li a{
+		color:#A4A4A4;
+		width:80px;
+		display:inline-block;
+		width:70px;
+		text-align:right;
+	}
+
+	.main_menu li{
+		display:inline;
+	}
+	.main_menu{
+		position:relative;
+		top:175px;	
+	}
+	.main_menu li a{
+		float:left;
+		width:146.2px;
+		padding-top:3px;
+		height:22px;
+		text-align:center;
+		background:#373733;
+		color:#FAFAFA;
+		opacity:0.8;
+	}
+	
+	#b_top{
+		position:relative;
+	}
+	.main_menu div{
+		display:none;
+		position:absolute;
+		top:25px;
+	}
+	.main_menu div ul li{
+		display:inline;
+	}	
+	.main_menu div ul li a{
+		float:left;
+		width:120px;
+		background:#3a3235;
+	}	
+	.div3{
+		left:250px;
+	}
+	.div4{
+		left:300px;
+	}
+	.div5{
+		left:400px;
+	}
+	.div6{
+		left:420px;
+	}		
+	.div7{
+		right:0px;
+	}		
+	
+	#b_left p{
+		width:250px;
+		height:40px;
+		padding-top:10px;
+		text-align:center;
+		font:20px "nanum_bold";
+		color:#2E2E2E;
+		border-bottom:2px dotted gray;
+		background:#D8D8D8;
+	}
+	#b_left a{
+		display:block;
+		width:220px;
+		height:30px;
+		letter-spacing:3px;
+		padding-left:30px;
+		padding-top:10px;
+		border-bottom:1px dotted gray;
+	}
+	.fnt{
+		color:#5F4C0B;
+	}	
+	
+	.n_title{
+		width:704px;
+		height:28px;
+		text-align:left;
+		font:25px "nanum_bold";
+		border-bottom:1px dotted gray;
+		margin-bottom:20px;
+		margin-top:10px;
+		color:#2E2E2E;
+	}	
+	.select_box{
+		width:704px;
+		height:25px;
+		text-align:right;
+	}
+	.sel_box{
+		width:80px;
+		height:22px;
+	}
+	.sel_text{
+		width:120px;
+		height:22px;
+	}	
+	.sel_button{
+		width:80px;
+		height:22px;
+	}	
+	.record_group{
+		font: 13px "nanum";	
+	}
+	
+	.record_group_left{
+		width:200px;
+		float:left;
+		padding-top:10px;
+	}
+	.select_box_right{
+		width:400px;
+		float:right;	
+	}
+
+	
+	.boardList{
+		width:100%;
+		font: 13px "nanum";
+	}
+	.boardList th{ 
+		padding:10px 0;
+		border-top:1px solid #848484;
+		border-bottom:1px solid #848484; 		
+	}
+	.boardList tbody td{ 
+		text-align:center;
+		border-bottom:1px solid #e0e0e0;
+		padding:8px 0;
+	}
+	.boardList .t_left{
+		text-align:left;
+	}	
+
+	
+	.boardForm{
+		width:100%;
+		font: 13px "nanum";
+	}
+	.boardForm th{ 
+		padding:10px 0;
+		letter-spacing:3px;
+		border-bottom:1px solid #e0e0e0; 		
+	}
+	.boardForm tbody td{ 
+		text-align:left;
+		border-bottom:1px solid #e0e0e0;
+		padding:8px 0;
+	}
+	.boardForm .t_left{
+		text-align:left;
+	}	
+	.boardForm .input100{
+		width:100px;
+		height:22px;
+	}	
+	.boardForm .input130{
+		width:130px;
+		height:22px;
+	}	
+	.boardForm .input600{
+		width:600px;
+		height:22px;
+	}	
+	.boardForm .textArea_H250{
+		width:600px;
+		height:250px;
+	}	
+	.boardForm .textArea_H250_noBorder{
+		width:600px;
+		height:250px;
+		border:0;
+	}	
+	/* 이전글 다음글 */
+	.preNext{
+		height:40px;
+		margin-top:10px;
+	}
+	.preNext p{
+		height:40px;
+		width:250px;
+	}
+	.preNext .pre{
+		float:left;
+	}
+	.preNext .next{
+		float:right;
+		text-align:right;
+	}
+	.preNext span{
+		display:block;
+		height:20px;
+	}
+	.preNext .preNextTitle{
+		color:#848484;
+	}
+	
+	.paging{
+		margin-top:20px;
+		text-align:center;
+	}
+	.paging:after{
+		content:""; display:block; clear:both;	
+	}	
+	.paging a{
+		padding:4px;
+		font-size:12px;
+		border:1px solid #e0e0e0;
+	}
+	.paging .active{
+		background:#81BEF7;
+		color:#fff;
+	}
+	.paging .write{
+		float:right;
+		padding:5px 10px;
+		background:#D8D8D8;
+		
+	}
+	.paging i{
+		color:gray;
+	}	
+
+	.paging a:hover, .buttonGroup a:hover{
+		color:#fff;	
+		background:#424242;
+	}	
+	
+	.buttonGroup, .buttonGroup_center{
+		margin-top:20px;
+	}	
+	.buttonGroup a{
+		padding:4px;
+		font-size:12px;
+		border:1px solid #e0e0e0;
+	}
+	.buttonGroup .butt{
+		float:right;
+		width:60px;
+		text-align:center;
+		padding:5px 10px;
+		background:#D8D8D8;
+		margin-left:5px;
+	}	
+	.buttonGroup:after{
+		content:""; display:block; clear:both;	
+	}	
+
+	.buttonGroup_center{
+		text-align:center;
+	}	
+	.buttonGroup_center .butt{
+		width:60px;
+		text-align:center;
+		padding:5px 10px;
+		background:#D8D8D8;
+		margin-left:5px;
+	}	
+
+
+	.b_bottom_left{
+		float:left;
+		width:189px;
+		padding-top:15px;
+		padding-left:11px;
+		
+	}
+	.b_bottom_center{
+		float:left;
+		padding-top:15px;
+		padding-left:60px;
+		width:562px;
+		font:8px "myFont_1";
+		color:#848484;
+	}
+	.b_bottom_center p{
+		font:8px "myFont_1";
+		color:#BDBDBD;
+		margin-bottom:10px;	
+	}
+	.b_bottom_right{
+		float:right;
+		padding-top:15px;
+		width:200px;
+		font:8px "myFont_1";
+		color:#848484;
+	}	
+	#b_bottom:after{
+		display:block;
+		content:"";
+		clear:both;
+	}	
+	
+/*	ȸ������ */
+	.checkB{
+		font-size:11px;
+		height:20px;
+	}
+	
+	.middleCheck{
+		vertical-align:middle;	
+	}	
+/*	�α��� */	
+.member_boxL {
+    position: relative;
+    padding: 40px;
+    width: 450px;
+    height: 200px;
+    border-right: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+    border-top: 2px solid #b4b4b0;
+	margin:50px auto 0 auto;
+}
+.login_form {
+    position: absolute;
+    top: 105px;
+    left: 50px;
+}
+.login_form label {
+    display: inline-block;
+    width: 85px;
+    color: #333;
+    font-family: 'NGothicB';
+}
+.login_form .pwLabel{
+    display: inline-block;
+    width: 125px;
+    color: #333;
+    font-family: 'NGothicB';
+}
+.login_form input {
+    border: 1px solid #ddd;
+    padding :0 5px;
+    height: 40px;
+    width: 210px;
+    background: #ececec;
+}
+.login_form .t_id {
+    border: 1px solid #ddd;
+    padding :0 5px;
+    height: 40px;
+    width: 210px;
+    background: #ececec;
+}
+.login_form .t_mobile {
+    border: 1px solid #ddd;
+    padding :0 5px;
+    height: 40px;
+    width: 65.6px;
+    background: #ececec;
+}
+.login_form .fl_clear {
+    margin: 0 0 4px;
+}
+
+.login_form .btn_login {
+    position: absolute;
+    top: 0;
+    right: -110px;
+    display: block;
+    width: 106px;
+    height: 84px;
+    line-height: 84px;
+    text-align: center;
+    font-size: 18px;
+	background: #b4b4b0;
+	color: #fff;
+}	
+	
+.login_form .pwButton {
+    position: absolute;
+    top: 0;
+    right: -110px;
+    display: block;
+    width: 106px;
+    height: 128px;
+    line-height: 125px;
+    text-align: center;
+    font-size: 18px;
+	background: #b4b4b0;
+	color: #fff;
+}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
