@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command.notice.NoticeDelete;
 import command.notice.NoticeList;
 import command.notice.NoticeSave;
+import command.notice.NoticeUpdate;
+import command.notice.NoticeView;
 import common.CommonExecute;
 import common.CommonToday;
 
@@ -35,9 +38,11 @@ public class Notice extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String gubun =request.getParameter("t_gubun");
-System.out.println("gubun====="+gubun);
 		if(gubun == null) gubun ="list";
 		String viewPage="";
+		
+		request.setAttribute("t_nowPage", "notice");
+		
 		//목록
 		if(gubun.equals("list")) {
 //			NoticeList notice = new NoticeList();
@@ -54,17 +59,25 @@ System.out.println("gubun====="+gubun);
 			CommonExecute notice = new NoticeSave();
 			notice.execute(request);
 			viewPage ="common_alert.jsp";
-			
+		//상세보기	
 		} else if (gubun.equals("view")) {
+			CommonExecute notice = new NoticeView();
+			notice.execute(request);
 			viewPage ="notice/notice_view.jsp";
-			
+		//수정폼	
 		} else if (gubun.equals("updateForm")) {
+			CommonExecute notice = new NoticeView();
+			notice.execute(request);
 			viewPage ="notice/notice_update.jsp";
-			
+		//수정	
 		} else if (gubun.equals("update")) {
+			CommonExecute notice = new NoticeUpdate();
+			notice.execute(request);
 			viewPage ="common_alert.jsp";
-			
+		//삭제	
 		} else if (gubun.equals("delete")) {
+			CommonExecute notice = new NoticeDelete();
+			notice.execute(request);
 			viewPage ="common_alert.jsp";
 		}
 		

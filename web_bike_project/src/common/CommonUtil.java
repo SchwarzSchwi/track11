@@ -19,6 +19,11 @@ public class CommonUtil {
 		String noticeDir ="D:/track11_csw/work_project/web_bike_project/WebContent/attach/notice/";
 		return noticeDir;
 	}
+	//제품 첨부경로
+		public static String getFile_dir_product() {
+			String productDir ="D:/track11_csw/work_project/web_bike_project/WebContent/attach/product/";
+			return productDir;
+		}
 	
 //오늘날짜
 	public static String getToday(){

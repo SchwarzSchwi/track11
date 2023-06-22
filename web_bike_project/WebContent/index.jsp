@@ -65,11 +65,16 @@
 	});	
 </script>
 <script>
-	function goWork(gubun)
-	{
+	function goWork(gubun){
 		bike.t_gubun.value=gubun;
 		bike.method="post";
 		bike.action="Member";
+		bike.submit();
+	}
+	function goAdmin(){
+		bike.t_gubun.value="memberList";
+		bike.method="post";
+		bike.action="Admin";
 		bike.submit();
 	}
 /*
@@ -104,6 +109,9 @@
 			<div id="b_top_menu">
 				<ul class="top_menu">
 					<li><a href="" class="allclick"><i class="fas fa-bars"></i></a></li>
+					<c:if test="${sessionLevel eq 'admin'}">
+					<li><a href="javascript:goAdmin()">Admin</a></li>
+					</c:if>
 					<li><a href="javascript:goWork('memberJoin')">Join</a></li>
 					<c:if test="${empty sessionId}">
 					<li><a href="javascript:goWork('memberLogin')">Login</a></li>

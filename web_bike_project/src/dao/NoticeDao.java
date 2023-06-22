@@ -135,6 +135,7 @@ public class NoticeDao {
 				"from home_최선우_notice n, home_최선우_member m\r\n" + 
 				"where n.reg_id = m.id\r\n" + 
 				"and n.no = '"+no+"'";
+		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -194,7 +195,6 @@ public class NoticeDao {
 				"    order by n.no desc "+
 				" ) tbl)\r\n" + 
 				"where rnum >="+start+" and rnum <="+end+"";
-		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -211,7 +211,7 @@ public class NoticeDao {
 				dtos.add(dto);
 			}
 		}catch(Exception e) {
-			System.out.println("getNoticeList()오류:"+query);
+			System.out.println("getNoticeListPage()오류:"+query);
 			e.printStackTrace();
 		}finally {
 			DBConnection.closeDB(con, ps, rs);

@@ -5,10 +5,12 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Random;
 
 import common.DBConnection;
 import dto.MemberDto;
+import dto.NewsDto;
 
 public class MemberDao {
 	Connection        con = null;
@@ -308,6 +310,114 @@ public class MemberDao {
 		}	
 		return result;
 	}
+
+	//admin 목록생성
+	public ArrayList<MemberDto> getMemberList(String select, String search, int start, int end) {
+		ArrayList<MemberDto> dtos = new ArrayList<>();
+		String query ="select *\r\n" + 
+				"from\r\n" + 
+				"(select rownum as rnum, tbl.*\r\n" + 
+				"from\r\n" + 
+				"(select b.id, b.name, b.area, \r\n" + 
+				"b.mobile_1, b.mobile_2, b.mobile_3,\r\n" + 
+				"to_char(b.exit_date,'yyyy-MM-dd hh24:mi:ss')as exit_date,\r\n" + 
+				"to_char(b.last_login_date,'yyyy-MM-dd hh24:mi:ss')as last_login_date,\r\n" + 
+				"to_char(b.reg_date,'yyyy-MM-dd')as reg_date\r\n" + 
+				"from bike_최선우_member b\r\n" + 
+				"where "+select+" like '%"+search+"%')tbl)\r\n" + 
+				"where rnum >= "+start+" and rnum <= "+end+"";
+				
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			while(rs.next()){
+				String id 		= rs.getString("id");
+				String name 	= rs.getString("name");
+				String area = rs.getString("area");
+				String mobile_1 = rs.getString("mobile_1");
+				String mobile_2 = rs.getString("mobile_2");
+				String mobile_3 = rs.getString("mobile_3");
+				String reg_date = rs.getString("reg_date");
+				String last_login_date = rs.getString("last_login_date");
+				String exit_date = rs.getString("exit_date");
+				MemberDto dto = new MemberDto(id, name, area, mobile_1, mobile_2, mobile_3, reg_date, last_login_date, exit_date);
+				dtos.add(dto);
+			}
+		}catch(Exception e) {
+			System.out.println("getMemberList()오류 :"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}			
+		return dtos;
+	}
+	//admin 총 멤버수
+	public int getTotalCount(String select, String search) {
+		int count = 0;
+		String query ="select count(*) as count \r\n" + 
+				" from bike_최선우_member b\r\n" + 
+				" where "+select+" like '%"+search+"%' ";
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			if(rs.next()){
+				count = rs.getInt("count");
+			}
+		}catch(Exception e) {
+			System.out.println("getTotalCount()오류 :"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}		
+		return count;
+	}
+
+//admin view
+	public MemberDto getMemberView(String id) {
+		MemberDto dto = null;
+		String query = "select id,name,area,address,\r\n" + 
+				"mobile_1,mobile_2,mobile_3,\r\n" + 
+				"gender,hobby_travel,hobby_reading,hobby_sports,\r\n" + 
+				"to_char(reg_date,'yyyy-MM-dd') as reg_date,\r\n" + 
+				"to_char(last_login_date,'yyyy-MM-dd hh24:mi:ss') as last_login_date,\r\n" + 
+				"to_char(exit_date,'yyyy-MM-dd')as exit_date\r\n" +
+				"from bike_최선우_member\r\n" + 
+				"where id = '"+id+"'";
+		System.out.println(query);
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+			if(rs.next()){
+				String name 	= rs.getString("name");
+				String area 	= rs.getString("area");
+				String address = rs.getString("address");
+				String mobile_1 = rs.getString("mobile_1");
+				String mobile_2 = rs.getString("mobile_2");
+				String mobile_3 = rs.getString("mobile_3");
+				String gender   = rs.getString("gender");
+				String hobby_travel = rs.getString("hobby_travel");
+				String hobby_reading= rs.getString("hobby_reading");
+				String hobby_sports = rs.getString("hobby_sports");
+				String reg_date     = rs.getString("reg_date");
+				String last_login_date = rs.getString("last_login_date");
+				String exit_date = rs.getString("exit_date");
+				
+				dto = new MemberDto(id, name, area, address,
+						mobile_1, mobile_2, mobile_3, gender, hobby_travel,
+						hobby_reading, hobby_sports, reg_date, last_login_date, exit_date);
+			}
+		}catch(Exception e) {
+			System.out.println("getMemberView()오류 :"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}		
+		return dto;
+	}
+	
 
 	
 }

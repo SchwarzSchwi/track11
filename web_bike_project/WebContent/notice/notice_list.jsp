@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common_header.jsp" %> 
 <script type="text/javascript">
+	
 	function goSearch(){
 		noti.method="post";
 		noti.action="Notice";
@@ -19,9 +20,17 @@
 		notice.action="Notice";
 		notice.submit();
 	}
+	function goView(no){
+		notice.t_gubun.value="view";
+		notice.t_no.value = no;
+		notice.method="post";
+		notice.action="Notice";
+		notice.submit();	
+	}
 </script>
 <form name="notice">
 	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_no">
 </form>
 <div id="b_left">
 			<%@ include file="../common_menu.jsp"%>
@@ -74,7 +83,7 @@
 							${number}
 							<c:set var="number" value="${number-1}"></c:set>
 						</td>
-						<td class="t_left"><a href="notice_view.html">${dto.getTitle()}</a></td>
+						<td class="t_left"><a href="javascript:goView('${dto.getNo()}')">${dto.getTitle()}</a></td>
 						<td>
 							<c:if test="${not empty dto.getAttach()}">						
 								<img src="images/clip.png">
@@ -89,7 +98,7 @@
 			</table>
 			
 			<div class="paging">
-				${t_paging}==$ 
+				${t_paging}
 				<c:if test="${sessionLevel eq 'admin'}">
 				<a href="javascript:goWriteForm()" class="write">글쓰기</a>
 				</c:if>			
