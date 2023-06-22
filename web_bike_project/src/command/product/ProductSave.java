@@ -27,17 +27,19 @@ public class ProductSave implements CommonExecute {
 			mpr = new MultipartRequest(request, productDir,
 										maxSize,"utf-8",
 										new DefaultFileRenamePolicy());
-			String photos 	= mpr.getParameter("t_photos");
-			String serial_no 	= mpr.getParameter("serial_no");
+			String no 		= dao.getMaxNo();
+			String photos 	= mpr.getFilesystemName("t_photos");
+			String serial_no 	= mpr.getParameter("t_serial_no");
 			String content  = mpr.getParameter("t_content");
 			String priority = mpr.getParameter("t_priority");
 			String name  = mpr.getParameter("t_name");
-			String huge   = mpr.getFilesystemName("t_huge");
+			String huge   = mpr.getParameter("t_huge");
 			String price   = mpr.getParameter("t_price");
-			String reg_date = CommonUtil.getTodayTime();
-			String registrant   = mpr.getParameter("t_registrant");
+			String reg_date = CommonUtil.getToday();
+			HttpSession session = request.getSession();
+			String registrant   = (String)session.getAttribute("sessionId");
 			
-			ProductDto dto = new ProductDto(serial_no, name, photos, content, priority, huge, price, reg_date, registrant);
+			ProductDto dto = new ProductDto(no, serial_no, name, photos, content, priority, huge, price, reg_date, registrant);
 			int result = dao.productSave(dto);
 			if(result != 1) msg ="등록 실패!";		
 			

@@ -42,6 +42,7 @@ public class ProductDao {
 				"registrant\r\n" + 
 				"from bike_최선우_product\r\n" + 
 				"where serial_no = '"+no+"'";
+		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -57,7 +58,7 @@ public class ProductDao {
 				String reg_date = rs.getString("reg_date");
 				String registrant = rs.getString("registrant");
 				
-				dto = new ProductDto(serial_no, name, photos, content, priority, huge, price, reg_date, registrant);
+				dto = new ProductDto(no, serial_no, name, photos, content, priority, huge, price, reg_date, registrant);
 			}
 		}catch(Exception e) {
 			System.out.println("getProductView()오류 :"+query);
@@ -112,11 +113,12 @@ public class ProductDao {
 				"('"+dto.getNo()+"','"+dto.getTitle()+"','"+dto.getContent()+"','"+dto.getAttach()+"','"+dto.getReg_id()+"','"+dto.getReg_date()+"')";
 		*/
 		String query="insert into bike_최선우_product\r\n" + 
-				"(photos, serial_no, content, name, \r\n" + 
-				"priority, huge, price, reg_date, registrant)\r\n" + 
-				"values('"+dto.getPhotos()+"','"+dto.getSerial_no()+"','"+dto.getContent()+"','"+dto.getName()+"','"+dto.getHuge()+"','"+dto.getPrice()+"',\r\n" + 
-				"to_date('"+dto.getReg_date()+"','yyyy-MM-dd'),'"+dto.getRegistrant()+"','"+dto.getPriority()+"')";
-		
+				"(no, photos, serial_no, content, name,\r\n" + 
+				"priority, huge, price, registrant, reg_date)\r\n" + 
+				"values\r\n" + 
+				"('"+dto.getNo()+"','"+dto.getPhotos()+"','"+dto.getSerial_no()+"','"+dto.getContent()+"','"+dto.getName()+"',\r\n" + 
+				"'"+dto.getPriority()+"','"+dto.getHuge()+"','"+dto.getPrice()+"','"+dto.getRegistrant()+"',\r\n" + 
+				"to_date('"+dto.getReg_date()+"','yyyy-MM-dd'))";
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);

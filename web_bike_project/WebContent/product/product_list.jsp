@@ -13,9 +13,9 @@
 		product.action="Product";
 		product.submit();
 	}
-	function goView(serial_no){
+	function goView(no){
 		productWork.t_gubun.value="view";
-		productWork.t_id.value=serial_no;
+		productWork.t_no.value=no;
 		productWork.method="post";
 		productWork.action="Product";
 		productWork.submit();
@@ -45,7 +45,7 @@
 			<input type="hidden" name="t_nowPage">		
 			<p class="select_box select_box_right">
 				<select name="t_select" class="sel_box">
-					<option value="serial_no" <c:if test="${t_select eq 'serial_no'}">selected</c:if> >일련번호</option>
+					<option value="serial_no" <c:if test="${t_select eq 'serial_no'}">selected</c:if> >제품번호</option>
 					<option value="name" <c:if test="${t_select eq 'name'}">selected</c:if>>제품명</option>
 				</select>
 				<input type="text" name="t_search" value="${t_search}" class="sel_text">
@@ -82,7 +82,7 @@
 							<c:set var="order" value="${order -1}"></c:set>
 						</td>
 						<td>${dto.getPhotos()}</td>
-						<td class="t_center"><a href="javascript:goView('${dto.getSerial_no()}')">${dto.getSerial_no()}</a></td>
+						<td class="t_center"><a href="javascript:goView('${dto.getNo()}')">${dto.getSerial_no()}</a></td>
 						<td>${dto.getName()}</td>
 						<td>${dto.getPrice()}</td>
 						<td>${dto.getViews()}</td>

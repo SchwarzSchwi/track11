@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.product.ProductList;
 import command.product.ProductSave;
+import command.product.ProductView;
 import common.CommonExecute;
 import common.CommonToday;
 
@@ -51,6 +52,10 @@ public class Product extends HttpServlet {
 			CommonExecute product = new ProductSave();
 			product.execute(request);
 			viewPage="common_alert.jsp";
+		}else if(gubun.equals("view")) {
+			CommonExecute product = new ProductView();
+			product.execute(request);
+			viewPage="product/product_view.jsp";
 		}
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
 		rd.forward(request, response);	

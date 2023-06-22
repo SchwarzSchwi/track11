@@ -60,12 +60,14 @@ public class ProductDto {
 	
 
 	//등록,상세보기
-	public ProductDto(String serial_no, String name, String photos, String content, String priority, String huge,
+	public ProductDto(String no, String serial_no, String name, String photos, String content, String priority, String huge,
 			String price, String reg_date, String registrant) {
+		this.no = no;
 		this.serial_no = serial_no;
+		this.name = name;
 		this.photos = photos;
 		this.content = content;
-		this.name = name;
+		this.priority = priority;
 		this.huge = huge;
 		this.price = price;
 		this.reg_date = reg_date;
