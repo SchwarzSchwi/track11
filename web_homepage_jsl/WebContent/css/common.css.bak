@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+/* reset css */
+
+* {margin:0; padding:0; box-sizing:border-box;}
+
+/* 
+width:275px; padding:10; 실제가로폭은? 295px 
+box-sizing:border-box css 적용하면 실제가폭은? 275px
+*/
+
+ul, ol {list-style:none;}
+a {text-decoration:none; color:#333;}
+body {font-family:나눔고딕; color:#333;}
+header, nav, section, article, footer {display:block;}
+h1,h2,h3,h4,h5,h6 {font-weight:normal; font-size:16px;}
+
+/* 브라우져 중앙에 요소를 배치하는 방법
+.goNav {position:absolute; top:50%; left:50%; z-index:500; width:120px; height:60px; background:#f00; margin-left:-60px; margin-top:-30px;}
+.goNav p {text-align:center; line-height:60px;}
+
+ 넘치는값 안 보이게 하기 overflow:hidden; 
+ 계층순서 z-index;
+ 마이너스(-) 값은 반대로 이동시킨다
+ body 시작지점을 원점으로 위치잡기positioin:absolute;
+ 줄간격과 높이를 같게하면 수직 가운데 정렬이 된다
+*/
+
+.sr-only {position:absolute; top:0; left:0; width:0; height:0; font-size:0; overflow:hidden;}
+.w100 {width:100%;}
+.clearfix {content:""; display:block; clear:both;}
+
+
