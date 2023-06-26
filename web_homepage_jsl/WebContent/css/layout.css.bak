@@ -1,0 +1,170 @@
+@charset "utf-8";
+
+/* main css */
+
+.top_navigation {height:45px; border-bottom:1px solid #e1e1e1; background:#FaFaFa;}
+.header {width:1100px; margin:0 auto; }
+.header .top_left > ul > li  {float:left;height:45px; line-height:45px;border-right:1px solid #e1e1e1;}
+.header .top_right > ul > li  {float:left;height:45px; line-height:45px;border-right:1px solid #e1e1e1;}
+
+.header .top_left > ul > li.first,
+.header .top_right > ul > li.first {border-left:1px solid #e1e1e1;}
+
+.header .top_left {float:left;}
+.header .top_left ul li {width:110px; text-align:center;}
+.header .top_right {float:right;}
+.header .top_right ul li {width:120px; text-align:center;}
+.header nav ul li a {display:block;}
+
+.gnb_group {clear:both; /* overflow:hidden; */}
+.gnb_group:after {content:""; display:block; clear:both;}
+.gnb_group .logo {float:left; font-size:22px; color:#000; padding-top:18px;}
+.gnb_group .gnb {float:right;}
+/* 
+자식이 float 하면 부모 그룹의 높이는 0 이된다. 높이가 인식이 되게 하기 위해서 부모에게 overflow:hidden 을 추가한다 
+:after 가상클래스 이용방법
+:after {content:""; display:block; clear:both;}
+*/
+
+.gnb_group .gnb > ul.nav_1depth > li {float:left;border:0 none; height:84px; line-height:84px; position:relative; width:160px;}
+.gnb_group .gnb > ul.nav_1depth > li.active  {background:#F78181;}
+.gnb_group .gnb > ul.nav_1depth > li.active > a {color:#fff;}
+
+.gnb_group .gnb > ul.nav_1depth > li > a {padding: 0px 26px;}
+.gnb_group .gnb > ul.nav_1depth > li > ul.nav_2depth {z-index:9999; position:absolute; left:0; top:84px; border:1px solid #ddd; background:#fff; width:100%; display:none;}
+.gnb_group .gnb > ul.nav_1depth > li > ul.nav_2depth >  li {height:40px; line-height:40px; border-bottom:1px solid #ddd; padding-left:5px;}
+
+/* 
+마진, 패딩 숫자를 이용하여 처리 방법
+숫자 1개 상우하좌; 숫자 2개 상하, 좌우; 숫자 3개 상,좌우, 하; 숫자 4개 상우하좌; 값을 의미한다
+*/
+
+.line {border-bottom:1px solid #e1e1e1; clear:both; /* background:#e1e1e1; height:1px; */}
+
+#main_visual {clear:both;}
+#main_visual ul li.one {background:#ccc url(../images/main02.jpg) no-repeat center center; height:610px; background-size:cover;}
+
+/* 
+배경을 그림으로 삽입하면 X축으로 반복해서 나타난다
+배경그림 크기조절 background-size:cover(가로); background-size:contain(세로);
+background:url(이미지경로/이미지파일) 반복여부 x축기준점 y축기준점
+*/
+
+/* 
+#main_visual .visual_inner {width:1100px; margin:0 auto; background:#0f0; margin-top:-400px;}
+*/
+
+#main_visual {position:relative;}
+#main_visual .visual_inner {width:1100px; position:absolute; left:50%; top:100px; margin-left:-550px;}
+#main_visual .visual_inner .title {font-size:32px; color:#000; letter-spacing:-1px; line-height:140%; margin-bottom:25px; color:#fff;
+text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
+/* 그림자 효과 text-shadow:x y 거리 색상; */
+
+#main_visual .visual_inner strong {}
+#main_visual .visual_inner .txt {line-height:150%; color:#fff; text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
+
+
+.news_group {width:1100px; margin:100px auto; overflow:hidden;}
+.news_group .news_tit, .news_group .news_list li {width:275px; float:left; padding:32px;}
+.news_group .news_list li {border:1px solid #ddd; border-right:0;}
+/* .news_group .news_list li.news_end {border-right:1px solid #ddd;} */
+.news_group .news_list li:nth-child(3) {border-right:1px solid #ddd;}
+.news_group .sub_tit {font-size:20px; color:#000; letter-spacing:-1.5px;}
+.news_group .text {font-size:16px; color:#666; margin-bottom:30px;}
+.news_group h2 {font-size:32px; color:#000;margin:5px 0 12px; letter-spacing:-2px;}
+.btn-border {border:2px solid #000; padding:7px 11px; padding-right:46px; color:#000; font-size:12px; font-weight:bold; position:relative;}
+.btn-border:after {position:absolute; width:6px; height:6px; border-right:1px solid #000; border-top:1px solid #000; display:block; content:""; right:18px; top:50%; margin-top:-3px; transform:rotate(45deg);}
+.white {border:2px solid #fff; color:#fff;}
+.white:after {border-right:1px solid #fff; border-top:1px solid #fff;}
+/* transform(변형):rotate(회전) 45deg(45도) */
+
+.news_group .news_list li a img {margin-bottom:20px;}
+.news_group .news_list li a strong {font-size:20px; margin-bottom:12px; display:block; letter-spacing:-2px;}
+.news_group .news_list li a p {color:#666; margin-bottom:8px; letter-spacing:-1px;}
+.news_group .news_list li a span {font-size:14px;}
+
+
+.main_content {clear:both; width:1100px;margin-left:auto; margin-right:auto;margin-bottom:100px;}
+.main_content:after {content:"";display:block;clear:both;}
+
+
+.main_content .main_left, .main_content .main_center, .main_content .main_right {float:left;}
+.main_content .main_left,.main_content .main_right {width:25%;}
+.main_content .main_center {width:50%;}
+.main_content .box {border:1px solid #ddd; overflow:hidden; position:relative; height:360px; padding:50px 45px;}
+.main_content .box .txt_relative {z-index:100;position:relative;}
+.main_content .box .img_transition {width:100%;  background:url(../images/network.png) no-repeat center center; background-size:cover; transform:scale(1.0); transition:all .5s; position:absolute; left:0; right:0; bottom:0; top:0; z-index:0; opacity:0.3;}
+.main_content .box:hover .img_transition {transform:scale(1.2); opacity:0.6;}
+.main_content .gallery {background:#5430f1;}
+.main_content .gallery .img_transition {width:100%;  background:url(../images/network02.jpg) no-repeat center center; background-size:cover; transform:scale(1.0); transition:all .5s; position:absolute; left:0; right:0; bottom:0; top:0; z-index:0; opacity:0.3;}
+.main_content .gallery:hover .img_transition {transform:scale(1.2);opacity:0;}
+/* 크기변형 css 애니메이션
+시작하는 그룹에 transition을 코딩하고 애니메이션 끝나는 그룹에 transform:scale(크기); rotate(회전)을 코딩한다 */
+.main_content .box h3 {font-size:16px; color:#000; margin-bottom:15px;}
+.main_content .box p {font-size:20px; color:#000; font-weight:bold; margin-bottom:30px;}
+
+
+
+
+.main_content .box2 {height:360px; background:#5430f1;}
+
+
+
+
+.main_content .box3 {height:360px; border-top:1px solid #ddd; padding:45px 45px 0;}
+.main_content .box3 nav li { float:left; margin-right:24px;}
+.main_content .box3 nav li a {color:#6f6f6f; font-size:22px;}
+.main_content .box3 nav li.active a {color:#000; font-weight:bold;}
+.main_content .box3 nav ul {}
+.main_content .box3  .recently {padding:20px 0; border-bottom:1px solid #ddd;}
+.main_content .box3  .recently .title {font-size:18px; margin-right:12px; display:block; color:#000; }
+.main_content .box3  .recently .title a {display:inline;}
+.main_content .box3  .recently .title .date {font-size:14px; color:#6f6f6f;}
+.main_content .box3  .recently .text {padding-top:20px;}
+.main_content .box3 .noticelist ul li,
+.main_content .box3 .graduation ul li {
+	height:30px; line-height:30px; position:relative;}
+.main_content .box3 .noticelist ul li .date,
+.main_content .box3 .graduation ul li .date {
+	position:absolute; right:0; top:0px;
+}
+.main_content .box3 .noticelist ul,
+.main_content .box3 .graduation ul {padding-top:20px;}
+/* .main_content .box3 .noticelist {display:none;}
+.main_content .box3 .graduation {display:none;} */
+.main_content .box3 .active {display:block;}
+
+
+.main_content .box4 {height:360px; background:#10b0d4; width:50%; float:left;}
+
+
+
+
+
+.main_content .box5 {height:360px; background:#2462e6; width:50%; float:left;}
+
+
+
+.main_content .main_right {height:720px; background:#ffb410;}
+
+.other {background:#ebebeb; margin-bottom:75px; padding:85px 0; overflow:hidden;}
+.container {width:1100px; margin:0 auto;}
+.other .other_left, .other .other_right {width:50%; height:480px; float:left;}
+.other .title_box, .other .content_box {width:50%; height:100%; float:left;}
+.other .title_box {background:#007dc6; padding:60px 45px;}
+.other .content_box {background:#FE2E2E;}
+.other .title_box em {font-size:16px; margin-bottom:15px; color:#fff; font-style:normal; text-transform:uppercase; display:block;}
+.other .title_box .title {font-size:40px;line-height:1.2; letter-spacing:-1px; color:#fff; margin-bottom:15px;}
+.other .title_box .text {font-size:18px; color:#fff; margin-bottom:45px;}
+
+
+/* footer css */
+
+.footer {background:#42464d; padding-top:80px; padding-bottom:65px;}
+.footer .address {font-style:normal; color:#ababb1; margin-bottom:20px;}
+.footer .address .title {font-size:14px; margin-bottom:8px; color:#fff;}
+.footer  .copyright {color:#fff;}
+
+
+
+

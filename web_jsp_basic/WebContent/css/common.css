@@ -1,0 +1,24 @@
+@charset "utf-8";
+
+/* reset css */
+* {margin:0; padding:0; box-sizing:border-box;}
+/* width:275px; padding:10; 실제가로폭은? 295px 
+box-sizing:border-box css 적용하면 실제 가로 폭은? 275px */
+ul,ol {list-style:none;}
+a {text-decoration:none; color:#333;}
+body {font-family:나눔고딕; color:#333; font-weight:normal; font-size:12px;}
+header, nav, section, article, footer {display:block;}
+1h,h2,h3,h4,h5,h6 {font-weight:normal; font-size:16px;}
+table, tr, td, th {border-collapse:collapse;}
+fieldset {border:0 none;}
+
+/* 브라우져 중앙에 요소를 배치하는 방법 */
+.sr-only {position:absolute; top:50%; left:50%; z-index:500px; width:120px; height:60px; background:#f00; margin-left:-60px; margin-top:-30px;}
+.sr-only p {text-align:center; line-height:60px;}
+
+/* 넘치는 값 안 보이게 하기 overflow:hidden; */
+/* 계층 순서 z-index; 마이너스(-) 값은 반대로 이동시킨다
+body 시작지점을 원점으로 위치 잡기 position:absolut; */
+.sr-only {position:absolute; top:0; left:0; width:0; height:0; font-size:0; overflow:hidden;}
+.w100 {width:100%;}
+.clearfix::after {content:""; display:block; clear:both;}
