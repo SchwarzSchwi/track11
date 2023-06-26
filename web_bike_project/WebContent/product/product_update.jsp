@@ -22,7 +22,7 @@
 				return;
 			}		
 		}
-	
+//	
 		// 2.첨부 용량 체크	
 		var file = product.t_photos;
 		var fileMaxSize  = 5; // 첨부 최대 용량 설정
