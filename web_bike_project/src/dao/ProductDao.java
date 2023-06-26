@@ -7,6 +7,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import common.DBConnection;
+import dto.NewsDto;
 import dto.ProductDto;
 
 public class ProductDao {
@@ -15,10 +16,53 @@ public class ProductDao {
 	ResultSet 			rs  = null;		
 
 	
+	//삭제
+	public int productDelete(String no){
+		int result  = 0;
+		String query="delete from bike_최선우_product\r\n" + 
+					 " where no ='"+no+"'";
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			result = ps.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("productDelete()오류 :"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}		
+		return result;
+	}
+	//수정
+	public int productUpdate(ProductDto dto){
+		int result =0;
+		String query="update bike_최선우_product\r\n" + 
+				"set serial_no ='"+dto.getSerial_no()+"',\r\n" + 
+				"    name='"+dto.getName()+"',\r\n" + 
+				"    photos='"+dto.getPhotos()+"',\r\n" +   
+				"    content='"+dto.getContent()+"',\r\n" +
+				"    priority='"+dto.getPriority()+"',\r\n" +
+				"    huge='"+dto.getHuge()+"',\r\n" +
+				"    price='"+dto.getPrice()+"'\r\n" +
+				"	 where no ='"+dto.getNo()+"'";
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			result = ps.executeUpdate();
+		}catch(Exception e) {
+			System.out.println("productUpdate()오류 :"+query);
+			e.printStackTrace();
+		}finally {
+			DBConnection.closeDB(con, ps, rs);
+		}		
+		return result;
+	}
+	
+	
 	//조회수 상승
 	public void setHitCount(String no){
 		String query="update bike_최선우_product\r\n" + 
-				" set hit = hit + 1\r\n" + 
+				" set views = views + 1\r\n" + 
 				" where no ='"+no+"'";
 		try {
 			con = DBConnection.getConnection();
@@ -26,7 +70,7 @@ public class ProductDao {
 			int result = ps.executeUpdate();
 			if(result == 0) System.out.println("product 조회수 증가 오류~~");
 		}catch(Exception e) {
-			System.out.println("setHitCount()오류 :"+query);
+			System.out.println("setViewsCount()오류 :"+query);
 			e.printStackTrace();
 		}finally {
 			DBConnection.closeDB(con, ps, rs);
@@ -37,12 +81,11 @@ public class ProductDao {
 	//상세조회
 	public ProductDto getProductView(String no){
 		ProductDto dto =null;
-		String query  ="select serial_no, name, photos, content, priority,   \r\n" + 
+		String query  ="select no, serial_no, name, photos, content, priority,   \r\n" + 
 				"huge, price, to_char(reg_date,'yyyy-MM-dd')as reg_date,\r\n" + 
 				"registrant\r\n" + 
 				"from bike_최선우_product\r\n" + 
-				"where serial_no = '"+no+"'";
-		System.out.println(query);
+				"where no = '"+no+"'";
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -77,7 +120,7 @@ public class ProductDao {
 				"from\r\n" + 
 				"(select rownum as rnum, tbl.*\r\n" + 
 				"from\r\n" + 
-				"(select photos, serial_no, name, price, views\r\n" + 
+				"(select no, photos, serial_no, name, price, views\r\n" + 
 				"from bike_최선우_product\r\n" + 
 				"where "+select+" like '%"+search+"%')tbl)\r\n" + 
 				"where rnum >= "+start+" and rnum <= "+end+"";
@@ -86,12 +129,13 @@ public class ProductDao {
 			ps  = con.prepareStatement(query);
 			rs  = ps.executeQuery();
 			while(rs.next()){
+				String no = rs.getString("no");
 				String photos 	= rs.getString("photos");
 				String serial_no = rs.getString("serial_no");
 				String name = rs.getString("name");
 				String price = rs.getString("price");
 				int    views      = rs.getInt("views");
-				ProductDto dto = new ProductDto(photos, serial_no, name, price, views);
+				ProductDto dto = new ProductDto(no, photos, serial_no, name, price, views);
 				dtos.add(dto);
 			}
 		}catch(Exception e) {
@@ -181,5 +225,37 @@ public class ProductDao {
 			DBConnection.closeDB(con, ps, rs);
 		}		
 		return count;
+	}
+	
+	//인덱스
+	public ArrayList<ProductDto> getProductIndex(){
+		ArrayList<ProductDto> dtos = new ArrayList<ProductDto>();
+		String query ="select *\r\n" + 
+					"from\r\n" + 
+					"(select rownum as rnum, tbl.*\r\n" + 
+					"from\r\n" + 
+					"(select no, photos, serial_no, to_char(price, '999,999,999') as price\r\n" + 
+					"from bike_최선우_product\r\n" + 
+					"order by to_number(registrant) desc, no desc\r\n" + 
+					"where rnum >=1 and rnum <=6";
+		try {
+			con = DBConnection.getConnection();
+			ps  = con.prepareStatement(query);
+			rs  = ps.executeQuery();
+		while(rs.next()){
+			String no = rs.getString("no");
+			String photos 	= rs.getString("photos");
+			String serial_no = rs.getString("serial_no");
+			String price = rs.getString("price");
+			ProductDto dto = new ProductDto(no, photos, serial_no, price);
+			dtos.add(dto);
+			}
+	}catch(Exception e) {
+		System.out.println("getProductList()오류 :"+query);
+		e.printStackTrace();
+	}finally {
+		DBConnection.closeDB(con, ps, rs);
+		}		
+	return dtos;
 	}
 }

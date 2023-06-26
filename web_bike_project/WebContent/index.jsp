@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,6 +78,13 @@
 		bike.action="Admin";
 		bike.submit();
 	}
+	function goNoticeView(no){
+		bike.t_gubun.value="view";
+		bike.t_no.value = no;
+		bike.method="post";
+		bike.action="Notice";
+		bike.submit();
+	}
 /*
 	function goJoin()
 	{
@@ -98,6 +106,7 @@
 <body>
 <form name="bike">
 	<input type="hidden" name="t_gubun">
+	<input type="hidden" name="t_no">
 </form>
 <style>
 #disableDiv { position:absolute; left:0; top:0;width:100%; height:1700px; z-index:995 ; background-color:#EEEEEE; filter:Alpha(opacity=80);opacity:0.8; -moz-opaciry:0.8}
@@ -188,7 +197,7 @@
 				</div>
 				<div class="menu1"><a href="notice/notice_list.html"><span class="maintitle">Notice & News</span></a>
 					<ul>
-						<li><a href="notice/notice_list.html">Notice</a></li>
+						<li><a href="Notice">Notice</a></li>
 						<li><a href="">News</a></li>
 						<li><a href="">Q & A</a></li>
 						<li><a href="">Free Board</a></li>
@@ -232,30 +241,86 @@
 		<hr><br>
 		<div id="b_left">
 			<p class="left_top">
-				<img src="images/left_top.jpg"><a href="notice/notice_list.html"><img src="images/left_right.jpg"></a>
+				<img src="images/left_top.jpg"><a href="Notice"><img src="images/left_right.jpg"></a>
 			</p>
+			<c:set var="no" value="${t_noticeDtos.size()}"></c:set>
 			<div class="left_middle">
 				<ul>
-					<li><a href=""><span class="noti_t">7.Convert between </span><span class="noti_d">22-08-25</span></a></li>
-					<li><a href=""><span class="noti_t">6.회원운영정책 변경안내 </span><span class="noti_d">22-08-21</span></a></li>
-					<li><a href=""><span class="noti_t">5.회원운영정책 변경안내 </span><span class="noti_d">22-07-15</span></a></li>
-					<li><a href=""><span class="noti_t">4.회원운영정책 변경안내 </span><span class="noti_d">22-07-10</span></a></li>
-					<li><a href=""><span class="noti_t">3.회원운영정책 변경안내 </span><span class="noti_d">22-07-08</span></a></li>
-					<li><a href=""><span class="noti_t">2.회원운영정책 변경안내 </span><span class="noti_d">22-07-02</span></a></li>
-					<li><a href=""><span class="noti_t">1.회원운영정책 변경안내 </span><span class="noti_d">22-07-01</span></a></li>
+				<c:forEach items="${t_noticeDtos}" var="dto">
+					<li><a href="javascript:goNoticeView('${dto.getNo()}')">
+						<span class="noti_t">
+							${no}
+							<c:set var="no" value="${no-1}"></c:set>
+							<c:choose>
+								<c:when test="${fn:length(dto.getTitle())>15}">
+									${fn.substring(dto.getTitle(),0,15)}
+								</c:when>
+								<c:otherwise>
+									${dto.getTitle()}
+								</c:otherwise>
+							</c:choose>
+							Convert between
+						</span><span class="noti_d">
+								${fn:substringAfter(dto.getReg_date(),20)}
+<!--						${fn:substring(dto.getReg_date(),2,12)}
+  -->					</span>
+						</a>
+					</li>
+				</c:forEach>
 				</ul>
 			</div>
-		
 		</div>
+<style>
+	.b_center_middle img{
+	width : 105px;
+	}
+	.b_center_middle a{
+		position:relative;
+		display:inline-block;
+		width:105px;
+		height:105px;
+	}
+	.b_center_middle a .over{
+		position:absolute;
+		top:0;
+		opacity:0;
+		background:white;
+		width:105px;
+		height:75px;
+		padding-top:30px;
+		transition:0.5s;
+		transform:translate(0,50px);
+	}
+	.b_center_middle a:hover .over{
+		opacity:0.8;
+		transform:translate(0,0);
+	}
+	.over p{
+		text-align:center;
+	}
+	.p_name{
+		font-size:11px;
+		font-weight:bold; 
+	}
+	.p_price{
+		font-size:10px;
+		color : blue;
+	}
+</style>	
 		<div id="b_center">
 			<p class="b_center_top"><img src="images/center_top.jpg"></p>
-			<p class="b_center_middle">
-				<a href=""><img src="images/center_middle_1.jpg"><a href=""><img src="images/center_middle_2.jpg"><a href=""><img src="images/center_middle_3.jpg"></a>
-			</p>
-			<p class="b_center_bottom">
-				<a href=""><img src="images/center_middle_4.jpg"><a href=""><img src="images/center_middle_5.jpg"><a href=""><img src="images/center_middle_6.jpg"></a>
-			</p>
-		</div>
+			<div class="b_center_middle">
+				<c:forEach items="${t_productDtos}" var="dto">
+				<a href=""><img src="attach/product/${dto.getPhotos()}">
+					<div class="over">
+						<p class="p_name">${dto.getSerial_no()}</p>
+						<p class="p_price">${dto.getPrice()}
+						</p>
+					</div>
+				</a>
+				</c:forEach>
+	   		 </div>
+	   	</div>	 
 		<div id="b_right">
 			<img src="images/center_right.jpg">
 		</div>

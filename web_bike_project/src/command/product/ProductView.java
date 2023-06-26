@@ -12,7 +12,6 @@ public class ProductView implements CommonExecute {
 	public void execute(HttpServletRequest request) {
 		ProductDao dao = new ProductDao();
 		String no = request.getParameter("t_no");
-		
 		dao.setHitCount(no);
 		ProductDto dto = dao.getProductView(no);
 		
