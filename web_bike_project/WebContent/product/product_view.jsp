@@ -4,17 +4,17 @@
 <script>
 	function goDelete(){
 		if(confirm("삭제하겠습니까?")){
-			news.t_gubun.value="delete";
-			news.method="post";
-			news.action="News";
-			news.submit();
+			product.t_gubun.value="delete";
+			product.method="post";
+			product.action="Product";
+			product.submit();
 		}	
 	}
 	function goUpdateForm(){
-		news.t_gubun.value ="updateForm";
-		news.method="post";
-		news.action="News";
-		news.submit();
+		product.t_gubun.value ="updateForm";
+		product.method="post";
+		product.action="Product";
+		product.submit();
 	}
 </script>
 <form name="product">
@@ -44,6 +44,23 @@
 						<td colspan="2">${t_dto.getSerial_no()}</td>
 						<td> <i class="far fa-eye"></i> ${t_dto.getViews()}</td>
 					</tr>
+					<tr>
+						<th>Name</th>
+						<td colspan="2">${t_dto.getName()}</td>
+					</tr>
+					<tr>
+						<th>Priority</th>
+						<td colspan="2">${t_dto.getPriority()}</td>
+					</tr>
+					<tr>
+						<th>Huge</th>
+						<td colspan="2">${t_dto.getHuge()}</td>
+					</tr>
+					<tr>
+						<th>Price</th>
+						<td colspan="2">${t_dto.getPrice()}</td>
+					</tr>
+					
 <style>
 	.viewImg{
 		width:500px;
@@ -60,7 +77,7 @@
 					<tr>
 						<td colspan="4">
 							<div class="imgDiv">
-								<img src="attach/news/${t_dto.getAttach()}" class="viewImg">
+								<img src="attach/product/${t_dto.getPhotos()} "class="viewImg">
 							</div>
 						</td>
 					</tr>
@@ -85,7 +102,7 @@
 -->
 					<tr>
 						<th>Writer</th>
-						<td>${t_dto.getReg_name()}</td>
+						<td>${t_dto.getRegistrant()}</td>
 						<th>RegDate</th>
 						<td>${t_dto.getReg_date()}</td>
 					</tr>	

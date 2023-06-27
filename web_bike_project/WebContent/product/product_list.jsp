@@ -74,6 +74,11 @@
 					</tr>
 				</thead>
 				<tbody>
+				<style>
+				.productimg{
+					width : 100px;
+				}
+				</style>
 				<c:set var="order" value="${t_order}"></c:set>
 				<c:forEach items="${t_dtos}" var="dto">
 					<tr>
@@ -81,7 +86,7 @@
 							${order}
 							<c:set var="order" value="${order -1}"></c:set>
 						</td>
-						<td>${dto.getPhotos()}</td>
+						<td><a href="javascript:goView('${dto.getNo()}')"><img src="attach/product/${dto.getPhotos()}" class="productimg"></a></td>
 						<td class="t_center"><a href="javascript:goView('${dto.getNo()}')">${dto.getSerial_no()}</a></td>
 						<td>${dto.getName()}</td>
 						<td>${dto.getPrice()}</td>

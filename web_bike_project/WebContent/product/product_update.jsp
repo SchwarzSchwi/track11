@@ -9,7 +9,6 @@
 		if(checkValue(product.t_priority,"우선순위 선택!!")) return;
 		if(checkValue(product.t_huge,"사이즈 선택!")) return;
 		if(checkValue(product.t_price,"가격 입력!")) return;
-		if(checkValue(product.t_photos,"첨부 이미지 선택!")) return;
 		/***  첨부파일 검사 ***/
 		// 1.확장자 검사
 		var fileName = product.t_photos.value;
@@ -22,7 +21,7 @@
 				return;
 			}		
 		}
-	
+//	
 		// 2.첨부 용량 체크	
 		var file = product.t_photos;
 		var fileMaxSize  = 5; // 첨부 최대 용량 설정
@@ -47,10 +46,90 @@
 			}	
 		}			
 		product.method="post";
-		product.action="Product?t_gubun=save";
+		product.action="Product?t_gubun=update";
 		product.submit();
 	}
 </script>  
+		<div id="b_left">
+			<%@ include file="../common_menu_admin.jsp" %>
+		</div>
+		
+		<div id="b_right">
+			<p class="n_title">
+				PRODUCT
+			</p>
+			<form name="product" enctype="multipart/form-data">
+			<input type="hidden" name="t_no" value="${t_dto.getNo()}">
+			<input type="hidden" name="t_ori_photos" value="${t_dto.getPhotos()}">
+			<table class="boardForm">
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>제품 번호</th>
+						<td colspan="3"><input type="text" name="t_serial_no" class="input600"  value="${t_dto.getSerial_no()}"></td>
+					</tr>	
+					<tr>
+						<th>제품명</th>
+						<td colspan="3"><input type="text" name="t_name" class="input600" value="${t_dto.getName()}"></td>
+					</tr>	
+					<tr>
+						<th>상세설명</th>
+						<td colspan="3"><textarea name="t_content" class="textArea_H250" >${t_dto.getContent()}</textarea></td>
+					</tr>
+					<tr>
+						<th>우선순위</th>
+						<td colspan="3">
+							<input type="radio" value="1" name="t_priority" class="middleCheck" /> 1&nbsp;&nbsp;  
+							<input type="radio" value="2" name="t_priority" class="middleCheck" /> 2&nbsp;&nbsp;  
+							<input type="radio" value="3" name="t_priority" class="middleCheck" /> 3
+						</td>
+					</tr>	
+					<tr>
+						<th>사이즈</th>
+						<td colspan="3">
+							<select name="t_huge">
+								<option value="L">성인</option>
+								<option value="M">학생</option>
+								<option value="S">유아</option>
+							</select>	
+						</td>
+					</tr>	
+					<tr>
+						<th>가격</th>
+						<td colspan="3"><input type="text" name="t_price" class="input600" value="${t_dto.getPrice()}"></td>
+					</tr>	
+					<tr>
+						<th>등록일</th>
+						<td>${t_dto.getReg_date()}</td>
+						<th>등록자</th>
+						<td>${t_dto.getRegistrant()}</td>
+					</tr>
+<style>
+	.viewImg{
+		width:500px;
+		height:300px;
+	}
+	.imgDiv{
+		width:500px;
+		height:300px;	
+		padding: 10px;
+		margin: 10px 30px;			
+		border:1px solid gray;
+	}
+</style>					
+					<tr>
+						<td>Image</td>
+						<td colspan="4">
+							<div class="imgDiv">
+								<img src="attach/product/${t_dto.getPhotos()}" class="viewImg">
+							</div>
+						</td>
+					</tr>
 <script type="text/javascript">
 	$(function(){					
 		function readImage(input) {
@@ -89,66 +168,9 @@
 		margin-bottom:10px;	
 		display:none;	
 	}
-</style>				
-		<div id="b_left">
-			<%@ include file="../common_menu_admin.jsp" %>
-		</div>
-		
-		<div id="b_right">
-			<p class="n_title">
-				PRODUCT
-			</p>
-			<form name="product" enctype="multipart/form-data">
-			<table class="boardForm">
-				<colgroup>
-					<col width="15%">
-					<col width="35%">
-					<col width="10%">
-					<col width="40%">
-				</colgroup>
-				<tbody>
+</style>			
 					<tr>
-						<th>제품 번호</th>
-						<td colspan="3"><input type="text" name="t_serial_no" class="input600"></td>
-					</tr>	
-					<tr>
-						<th>제품명</th>
-						<td colspan="3"><input type="text" name="t_name" class="input600"></td>
-					</tr>	
-					<tr>
-						<th>상세설명</th>
-						<td colspan="3"><textarea name="t_content" class="textArea_H250"></textarea></td>
-					</tr>
-					<tr>
-						<th>우선순위</th>
 						<td colspan="3">
-							<input type="radio" value="1" name="t_priority" class="middleCheck" /> 1&nbsp;&nbsp;  
-							<input type="radio" value="2" name="t_priority" class="middleCheck" /> 2&nbsp;&nbsp;  
-							<input type="radio" value="3" name="t_priority" class="middleCheck" /> 3
-						</td>
-					</tr>	
-					<tr>
-						<th>사이즈</th>
-						<td colspan="3">
-							<select name="t_huge">
-								<option value="L">성인</option>
-								<option value="M">학생</option>
-								<option value="S">유아</option>
-							</select>	
-						</td>
-					</tr>	
-					<tr>
-						<th>가격</th>
-						<td colspan="3"><input type="text" name="t_price" class="input600"></td>
-					</tr>	
-					<tr>
-						<th>등록일</th>
-						<td>${t_today}</td>
-						<th>등록자</th>
-						<td>${sessionName}</td>
-					</tr>
-					<tr>
-						<td colspan="4">
 						*이미지 첨부 필수 500px * 300px 권장<br><br>
 							<img id="preview-image">
 							<input type="file" name="t_photos" id="input-image" class="input600">

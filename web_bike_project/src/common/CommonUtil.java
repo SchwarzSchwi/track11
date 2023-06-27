@@ -11,17 +11,17 @@ public class CommonUtil {
 		}
 	//news 첨부경로
 	public static String getFile_dir_news() {
-		String newsDir ="C:/track11_csw/work_project/track11/web_bike_project/WebContent/attach/news";
+		String newsDir ="C:/Users/Choi/Desktop/it/work_project/track11/web_bike_project/WebContent/attach/news";
 		return newsDir;
 	}
 	//공지사항 첨부경로
 	public static String getFile_dir_notice() {
-		String noticeDir ="C:/track11_csw/work_project/track11/web_bike_project/WebContent/attach/notice";
+		String noticeDir ="C:/Users/Choi/Desktop/it/work_project/track11/web_bike_project/WebContent/attach/notice";
 		return noticeDir;
 	}
 	//제품 첨부경로
 		public static String getFile_dir_product() {
-			String productDir ="C:/track11_csw/work_project/track11/web_bike_project/WebContent/attach/product";
+			String productDir ="C:/Users/Choi/Desktop/it/work_project/track11/web_bike_project/WebContent/attach/product";
 			return productDir;
 		}
 	
