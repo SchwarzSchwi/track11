@@ -32,7 +32,15 @@
 	<input type="hidden" name="t_no">
 </form>
 	<div id="b_left">
+	<c:if test="${sessionLevel eq 'admin'}">
 		<%@ include file="../common_menu_admin.jsp" %>
+	</c:if>
+	<c:if test="${sessionLevel eq 'member'}">
+		<%@ include file="../common_menu_member.jsp" %>
+	</c:if>
+	<c:if test="${empty sessionLevel}">
+		<%@ include file="../common_menu_member.jsp" %>
+	</c:if>
 	</div>
 		<div id="b_right">
 			<p class="n_title">

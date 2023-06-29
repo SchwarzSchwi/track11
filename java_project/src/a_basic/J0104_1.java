@@ -19,7 +19,7 @@ public class J0104_1{
 		boolean tf = false; // true,false
 		
 		// char
-		char cch = 'a';
+		char ch = 'a';
 		
 		// 문자열
 		String str = "홍길동 입니다";

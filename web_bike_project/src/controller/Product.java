@@ -70,6 +70,13 @@ public class Product extends HttpServlet {
 			CommonExecute product = new ProductDelete();
 			product.execute(request);
 			viewPage="common_alert.jsp";
+		}else if(gubun.equals("purchaseForm")) {
+			CommonExecute product = new ProductView();
+			CommonExecute common = new CommonToday();
+			product.execute(request);
+			common.execute(request);
+			viewPage="product/product_purchase.jsp";
+			
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

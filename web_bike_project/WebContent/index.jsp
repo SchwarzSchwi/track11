@@ -222,7 +222,7 @@
 				<li><a href="">Clothing</a></li>
 				<li><a href="">Maintenance</a></li>
 				<li><a href="">Parts</a></li>
-				<li><a href="">Tires & Tubes</a></li>
+				<li><a href="Product">Product</a></li>
 				<li><a href="Notice">Notice & News</a></li>
 			</ul>
 		</div>
@@ -305,22 +305,50 @@
 		font-size:10px;
 		color : blue;
 	}
-</style>	
-		<div id="b_center">
-			<p class="b_center_top"><a href="Product"><img src="images/center_top.jpg"></a></p>
-			<div class="b_center_middle">
-				<c:forEach items="${t_productDtos}" var="dto">
-				<a href="">
-					<img src="attach/product/${dto.getPhotos()}">
-					<div class="over">
-						<p class="p_name">${dto.getName()}</p>
-						<p class="p_price">${dto.getPrice()}</p>
-					</div>
-				</a>
-				</c:forEach>
-	   		 </div>
-	   	</div>	 
-		<div id="b_right">
+</style>
+			<div id="b_center">
+				<p class="b_center_top">
+					<a href="Product"><img src="images/center_top.jpg"></a>
+				</p>
+				<div class="b_center_middle">
+					<c:forEach items="${t_productDtos}" var="dto">
+						<a href=""> <img src="attach/product/${dto.getPhotos()}">
+							<div class="over">
+								<p class="p_name">${dto.getName()}</p>
+								<p class="p_price">${dto.getPrice()}</p>
+							</div>
+						</a>
+					</c:forEach>
+					<style>
+.b_center_middle a.ready {
+	position: relative;
+	display: inline-block;
+	width: 105px;
+	height: 105px;
+}
+
+.b_center_middle a .overReady {
+	position: absolute;
+	top: 0;
+	background: white;
+	width: 105px;
+	height: 75px;
+	padding-top: 30px;
+}
+</style>
+
+					<c:forEach begin="1" end="${6 - t_productDtos.size()}" step="1">
+
+						<a class="ready">
+							<div class="overReady">
+								<p class="p_name">상품<br>준비중</p>
+							</div>
+						</a>
+
+					</c:forEach>
+				</div>
+			</div>
+			<div id="b_right">
 			<img src="images/center_right.jpg">
 		</div>
 		<div id="b_bottom_2">

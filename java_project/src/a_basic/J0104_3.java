@@ -6,10 +6,10 @@ public class J0104_3 {
 		int eng = 70;
 		int mat = 60;
 		int total = kor + eng + mat;
-		// 총점 : 210
+		// 총점 : 215
 		System.out.println("총점 :"+total);
 		double ave = total / 3.0; // 215 / 3 
-		//  71.66666666667
+		//  71.66666666666667
 		System.out.println("평균 :"+ave);
 		
 		

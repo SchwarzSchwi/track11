@@ -16,15 +16,29 @@
 		product.action="Product";
 		product.submit();
 	}
+	function goPurchaseForm(){
+		product.t_gubun.value ="purchaseForm";
+		product.method="post";
+		product.action="Product";
+		product.submit();
+	}
 </script>
 <form name="product">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_no" value="${t_dto.getNo()}">
 	<input type="hidden" name="t_photos" value="${t_dto.getPhotos()}">
 </form>
-		<div id="b_left">
+	<div id="b_left">
+		<c:if test="${sessionLevel eq 'admin'}">
 			<%@ include file="../common_menu_admin.jsp" %>
-		</div>
+		</c:if>
+		<c:if test="${sessionLevel eq 'member'}">
+			<%@ include file="../common_menu_member.jsp" %>
+		</c:if>
+		<c:if test="${empty sessionLevel}">
+			<%@ include file="../common_menu_member.jsp" %>
+		</c:if>
+	</div>
 		
 		<div id="b_right">
 			<p class="n_title">
@@ -46,19 +60,19 @@
 					</tr>
 					<tr>
 						<th>Name</th>
-						<td colspan="2">${t_dto.getName()}</td>
+						<td colspan="3">${t_dto.getName()}</td>
 					</tr>
 					<tr>
 						<th>Priority</th>
-						<td colspan="2">${t_dto.getPriority()}</td>
+						<td colspan="3">${t_dto.getPriority()}</td>
 					</tr>
 					<tr>
 						<th>Huge</th>
-						<td colspan="2">${t_dto.getHuge()}</td>
+						<td colspan="3">${t_dto.getHuge()}</td>
 					</tr>
 					<tr>
 						<th>Price</th>
-						<td colspan="2">${t_dto.getPrice()}</td>
+						<td colspan="3">${t_dto.getPrice()}</td>
 					</tr>
 					
 <style>
@@ -115,6 +129,9 @@
 				<a href="javascript:goUpdateForm()" class="butt">Update</a>
 			</c:if>	
 				<a href="Product" class="butt">List</a>
+			<c:if test="${sessionLevel eq 'member'}">
+				<a href="javascript:goPurchaseForm()" class="butt">Purchase</a>
+			</c:if>	
 			</div>	
 		</div>	
 	</div>

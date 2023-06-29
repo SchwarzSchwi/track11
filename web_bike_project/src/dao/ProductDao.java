@@ -29,7 +29,6 @@ public class ProductDao {
 				"order by to_number(priority) desc"+
 				")tbl)\r\n" + 
 				"where rnum >= 1 and rnum <= 6";
-		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
