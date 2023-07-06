@@ -1,4 +1,4 @@
-package command.product;
+package command.manage;
 
 import java.util.ArrayList;
 
@@ -6,24 +6,26 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.CommonExecute;
 import common.CommonUtil;
-import dao.ProductDao;
-import dto.ProductDto;
+import dao.ManageDao;
+import dto.ManageDto;
 
-public class ProductList implements CommonExecute {
+public class ManageList implements CommonExecute {
 
 	@Override
 	public void execute(HttpServletRequest request) {
-		ProductDao dao = new ProductDao();
+		ManageDao dao = new ManageDao();
 		String select = request.getParameter("t_select");
 		String search = request.getParameter("t_search");		
+		String displayCount = request.getParameter("t_displayCount");
 		if(select == null) {
-			select ="no";
+			select ="order_no";
 			search ="";
+			displayCount ="5";
 		}
 
 		/* paging 설정 start*/
 		int totalCount = dao.getTotalCount(select,search);
-		int list_setup_count = 5;  //한페이지당 출력 행수 
+		int list_setup_count = Integer.parseInt(displayCount);  //한페이지당 출력 행수 
 		int pageNumber_count = 3;  //한페이지당 출력 페이지 갯수
 		
 		String nowPage = request.getParameter("t_nowPage");
@@ -42,13 +44,14 @@ public class ProductList implements CommonExecute {
 		/* paging 설정 end*/			
 		int order = totalCount - ((current_page -1) * list_setup_count);
 		
-		ArrayList<ProductDto> dtos = 
-						dao.getProductList(select, search, start, end);
+		ArrayList<ManageDto> dtos = dao.getManageList(select, search, start, end);
+		
 		String paging = CommonUtil.pageListPost(current_page, total_page, pageNumber_count);
 		
 		request.setAttribute("t_dtos", dtos);
 		request.setAttribute("t_select", select);
 		request.setAttribute("t_search", search);
+		request.setAttribute("t_displayCount", displayCount);
 		request.setAttribute("t_paging", paging);
 		request.setAttribute("t_totalCount", totalCount);
 		request.setAttribute("t_order", order);

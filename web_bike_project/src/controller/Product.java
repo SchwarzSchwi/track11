@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.product.ProductDelete;
 import command.product.ProductList;
+import command.product.ProductPurchase;
 import command.product.ProductSave;
 import command.product.ProductUpdate;
 import command.product.ProductView;
@@ -76,6 +77,10 @@ public class Product extends HttpServlet {
 			product.execute(request);
 			common.execute(request);
 			viewPage="product/product_purchase.jsp";
+		}else if(gubun.equals("purchase")){
+			CommonExecute product = new ProductPurchase();
+			product.execute(request);
+			viewPage="common_alert.jsp";
 			
 		}
 		

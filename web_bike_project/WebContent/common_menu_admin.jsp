@@ -4,4 +4,5 @@
 <ul>
 	<li><a href="Admin"><c:if test="${t_nowPage eq 'admin'}"><span class="fnt"><i class="fas fa-apple-alt"></i></span> </c:if>MEMBER</a></li>
 	<li><a href="Product"><c:if test="${t_nowPage eq 'product'}"><span class="fnt"><i class="fas fa-apple-alt"></i></span> </c:if>PRODUCT</a></li>
+	<li><a href="Manage"><c:if test="${t_nowPage eq 'manage'}"><span class="fnt"><i class="fas fa-apple-alt"></i></span> </c:if>MANAGE</a></li>
 </ul>

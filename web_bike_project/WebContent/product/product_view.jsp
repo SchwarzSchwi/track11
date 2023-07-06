@@ -36,7 +36,7 @@
 			<%@ include file="../common_menu_member.jsp" %>
 		</c:if>
 		<c:if test="${empty sessionLevel}">
-			<%@ include file="../common_menu_member.jsp" %>
+			<%@ include file="../common_menu_not_member.jsp" %>
 		</c:if>
 	</div>
 		

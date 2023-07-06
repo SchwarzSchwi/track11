@@ -7,7 +7,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import common.DBConnection;
-import dto.NewsDto;
 import dto.ProductDto;
 
 public class ProductDao {
@@ -97,13 +96,14 @@ public class ProductDao {
 		String query="update bike_최선우_product\r\n" + 
 				" set views = views + 1\r\n" + 
 				" where no ='"+no+"'";
+		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
 			int result = ps.executeUpdate();
 			if(result == 0) System.out.println("product 조회수 증가 오류~~");
 		}catch(Exception e) {
-			System.out.println("setViewsCount()오류 :"+query);
+			System.out.println("setHitcount()오류 :"+query);
 			e.printStackTrace();
 		}finally {
 			DBConnection.closeDB(con, ps, rs);
@@ -116,7 +116,7 @@ public class ProductDao {
 		ProductDto dto =null;
 		String query  ="select no, serial_no, name, photos, content, priority,   \r\n" + 
 				"huge, price, to_char(reg_date,'yyyy-MM-dd')as reg_date,\r\n" + 
-				"registrant\r\n" + 
+				"registrant, views\r\n" + 
 				"from bike_최선우_product\r\n" + 
 				"where no = '"+no+"'";
 		try {
@@ -133,8 +133,9 @@ public class ProductDao {
 				String price = rs.getString("price");
 				String reg_date = rs.getString("reg_date");
 				String registrant = rs.getString("registrant");
+				String views = rs.getString("views");
 				
-				dto = new ProductDto(no, serial_no, name, photos, content, priority, huge, price, reg_date, registrant);
+				dto = new ProductDto(no, serial_no, name, photos, content, priority, huge, price, reg_date, registrant, views);
 			}
 		}catch(Exception e) {
 			System.out.println("getProductView()오류 :"+query);
@@ -156,7 +157,8 @@ public class ProductDao {
 				"(select no, photos, serial_no, name, price, views\r\n" + 
 				"from bike_최선우_product\r\n" + 
 				"where "+select+" like '%"+search+"%')tbl)\r\n" + 
-				"where rnum >= "+start+" and rnum <= "+end+"";
+				"where rnum >= "+start+" and rnum <= "+end+"\r\n" +
+				"order by no desc";
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -167,7 +169,7 @@ public class ProductDao {
 				String serial_no = rs.getString("serial_no");
 				String name = rs.getString("name");
 				String price = rs.getString("price");
-				int    views      = rs.getInt("views");
+				String views      = rs.getString("views");
 				ProductDto dto = new ProductDto(no, photos, serial_no, name, price, views);
 				dtos.add(dto);
 			}
@@ -196,7 +198,7 @@ public class ProductDao {
 				"('"+dto.getNo()+"','"+dto.getPhotos()+"','"+dto.getSerial_no()+"','"+dto.getContent()+"','"+dto.getName()+"',\r\n" + 
 				"'"+dto.getPriority()+"','"+dto.getHuge()+"','"+dto.getPrice()+"','"+dto.getRegistrant()+"',\r\n" + 
 				"to_date('"+dto.getReg_date()+"','yyyy-MM-dd'))";
-		System.out.println(query);
+		
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);

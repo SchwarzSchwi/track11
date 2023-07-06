@@ -3,17 +3,12 @@
 <%@ include file="../common_header.jsp" %>  
 <script type="text/javascript">
 	function goSave(){
-		if(checkValue(product.t_serial_no,"제품번호 입력!")) return;
-		if(checkValue(product.t_name,"제품명 입력!")) return;
-		if(checkValue(product.t_content,"상세설명 입력!")) return;
-		if(checkValue(product.t_priority,"우선순위 선택!!")) return;
-		if(checkValue(product.t_huge,"사이즈 선택!")) return;
-		if(checkValue(product.t_price,"가격 입력!")) return;
-		
+	if(checkValue(product.t_payment,"결제수단 입력!")) return;
 		product.method="post";
 		product.action="Product?t_gubun=purchase";
 		product.submit();
 	}
+	
 </script>  
 <div id="b_left">
 	<c:if test="${sessionLevel eq 'admin'}">
@@ -30,7 +25,7 @@
 			<p class="n_title">
 				PRODUCT
 			</p>
-			<form name="product" enctype="multipart/form-data">
+			<form name="product">
 			<input type="hidden" name="t_no" value="${t_dto.getNo()}">
 			<table class="boardForm">
 				<colgroup>
@@ -41,20 +36,12 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th>주문 번호</th>
-						<td colspan="3"><input type="text" name="t_order_no" class="input600"  value=""></td>
-					</tr>	
-					<tr>
-						<th>처리상태</th>
-						<td colspan="3"><input type="text" name="t_now_status" class="input600" value="${t_dto.getName()}"></td>
-					</tr>	
-					<tr>
 						<th>제품번호</th>
-						<td colspan="3"><input type="text" name="t_product_no" class="input600" value="${t_dto.getSerial_no()}" readonly></td>
+						<td>${t_dto.getSerial_no()}</td>
 					</tr>
 					<tr>
 						<th>구매자 ID</th>
-						<td colspan="3"><input type="text" name="t_consumer_id" class="input600" value="${sessionId}" readonly></td>
+						<td>${sessionId}</td>
 					</tr>
 					<tr>
 						<th>우편번호</th>
@@ -66,7 +53,7 @@
 					</tr>
 					<tr>
 						<th>상세주소</th>
-						<td colspan="3"><textarea name="t_detail_address" class="textArea_H250" > 예) 읍/면/동/리 + 지번, 서린동 154-1 / 도로명 + 건물번호, 종로 6</textarea></td>
+						<td colspan="3"><input type="text" name="t_detail_address" class="input600" value="예) 읍/면/동/리 + 지번, 서린동 154-1 / 도로명 + 건물번호, 종로 6"></td>
 					</tr>
 					<tr>
 						<th>지불방법</th>
@@ -78,13 +65,14 @@
 					</tr>	
 					<tr>
 						<th>가격</th>
-						<td colspan="3"><input type="text" name="t_price" class="input600" value="${t_dto.getPrice()}" readonly></td>
+						<td>${t_dto.getPrice()}</td>
 					</tr>	
 					<tr>
 						<th>구매일자</th>
-						<td colspan="3">${t_todayTime}</td>
-					</tr>
+						<td>${t_todayTime}</td>
+					</tr>	
 				</tbody>
+					
 			</table>
 			</form>
 			<div class="buttonGroup">

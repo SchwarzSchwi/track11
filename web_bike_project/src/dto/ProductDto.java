@@ -1,8 +1,7 @@
 package dto;
 
 public class ProductDto {
-	private String no,photos,serial_no,content,name,priority,huge,price,reg_date,registrant;
-	int views;
+	private String no,photos,serial_no,content,name,priority,huge,price,reg_date,registrant,views;
 	
 	public String getNo() {
 		return no;
@@ -54,12 +53,11 @@ public class ProductDto {
 	}
 
 
-	public int getViews() {
+	public String getViews() {
 		return views;
 	}
 	
-
-	//등록,상세보기
+	//등록
 	public ProductDto(String no, String serial_no, String name, String photos, String content, String priority, String huge,
 			String price, String reg_date, String registrant) {
 		this.no = no;
@@ -72,11 +70,27 @@ public class ProductDto {
 		this.price = price;
 		this.reg_date = reg_date;
 		this.registrant = registrant;
+		this.views = views;
+	}
+	//상세보기
+	public ProductDto(String no, String serial_no, String name, String photos, String content, String priority, String huge,
+			String price, String reg_date, String registrant, String views) {
+		this.no = no;
+		this.serial_no = serial_no;
+		this.name = name;
+		this.photos = photos;
+		this.content = content;
+		this.priority = priority;
+		this.huge = huge;
+		this.price = price;
+		this.reg_date = reg_date;
+		this.registrant = registrant;
+		this.views = views;
 	}
 
 
 	//목록
-	public ProductDto(String no, String photos, String serial_no, String name, String price, int views) {
+	public ProductDto(String no, String photos, String serial_no, String name, String price, String views) {
 		this.no = no;
 		this.photos = photos;
 		this.serial_no = serial_no;
