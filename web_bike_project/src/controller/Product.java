@@ -71,7 +71,6 @@ public class Product extends HttpServlet {
 			CommonExecute product = new ProductDelete();
 			product.execute(request);
 			viewPage="common_alert.jsp";
-<<<<<<< HEAD
 		}else if(gubun.equals("purchaseForm")) {
 			CommonExecute product = new ProductView();
 			CommonExecute common = new CommonToday();
@@ -83,8 +82,6 @@ public class Product extends HttpServlet {
 			product.execute(request);
 			viewPage="common_alert.jsp";
 			
-=======
->>>>>>> refs/remotes/origin/main
 		}
 		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPage);

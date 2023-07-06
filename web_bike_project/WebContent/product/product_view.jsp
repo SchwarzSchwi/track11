@@ -15,15 +15,12 @@
 		product.method="post";
 		product.action="Product";
 		product.submit();
-<<<<<<< HEAD
 	}
 	function goPurchaseForm(){
 		product.t_gubun.value ="purchaseForm";
 		product.method="post";
 		product.action="Product";
 		product.submit();
-=======
->>>>>>> refs/remotes/origin/main
 	}
 </script>
 <form name="product">
@@ -63,7 +60,6 @@
 					</tr>
 					<tr>
 						<th>Name</th>
-<<<<<<< HEAD
 						<td colspan="3">${t_dto.getName()}</td>
 					</tr>
 					<tr>
@@ -77,22 +73,8 @@
 					<tr>
 						<th>Price</th>
 						<td colspan="3">${t_dto.getPrice()}</td>
-=======
-						<td colspan="2">${t_dto.getName()}</td>
 					</tr>
-					<tr>
-						<th>Priority</th>
-						<td colspan="2">${t_dto.getPriority()}</td>
-					</tr>
-					<tr>
-						<th>Huge</th>
-						<td colspan="2">${t_dto.getHuge()}</td>
-					</tr>
-					<tr>
-						<th>Price</th>
-						<td colspan="2">${t_dto.getPrice()}</td>
->>>>>>> refs/remotes/origin/main
-					</tr>
+				
 					
 <style>
 	.viewImg{
