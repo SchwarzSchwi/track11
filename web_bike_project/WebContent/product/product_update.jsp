@@ -9,6 +9,7 @@
 		if(checkValue(product.t_priority,"우선순위 선택!!")) return;
 		if(checkValue(product.t_huge,"사이즈 선택!")) return;
 		if(checkValue(product.t_price,"가격 입력!")) return;
+<<<<<<< HEAD
 		/***  첨부파일 검사 ***/
 		// 1.확장자 검사
 		var fileName = product.t_photos.value;
@@ -106,6 +107,108 @@
 					<tr>
 						<th>등록일</th>
 						<td>${t_dto.getReg_date()}</td>
+=======
+		if(checkValue(product.t_photos,"첨부 이미지 선택!")) return;
+		/***  첨부파일 검사 ***/
+		// 1.확장자 검사
+		var fileName = product.t_photos.value;
+		if(fileName != ""){ //  C:\fakepath\img_1.png
+			var pathFileName = fileName.lastIndexOf(".")+1;    //확장자 제외한 경로+파일명
+			var extension = (fileName.substr(pathFileName)).toLowerCase();	//확장자명
+			//파일명.확장자
+			if(extension != "jpg" && extension != "gif" && extension != "png"){
+				alert(extension +" 형식 파일은 업로드 안됩니다. jpg, gif, png 파일만 가능!");
+				return;
+			}		
+		}
+//	
+		// 2.첨부 용량 체크	
+		var file = product.t_photos;
+		var fileMaxSize  = 5; // 첨부 최대 용량 설정
+		if(file.value !=""){
+			// 사이즈체크
+			var maxSize  = 1024 * 1024 * fileMaxSize;
+			var fileSize = 0;
+			// 브라우저 확인
+			var browser=navigator.appName;
+			// 익스플로러일 경우
+			if (browser=="Microsoft Internet Explorer"){
+				var oas = new ActiveXObject("Scripting.FileSystemObject");
+				fileSize = oas.getFile(file.value).size;
+			}else {
+			// 익스플로러가 아닐경우
+				fileSize = file.files[0].size;
+			}
+
+			if(fileSize > maxSize){
+				alert(" 첨부파일 사이즈는 "+fileMaxSize+"MB 이내로 등록 가능합니다. ");
+				return;
+			}	
+		}			
+		product.method="post";
+		product.action="Product?t_gubun=update";
+		product.submit();
+	}
+</script>  
+		<div id="b_left">
+			<%@ include file="../common_menu_admin.jsp" %>
+		</div>
+		
+		<div id="b_right">
+			<p class="n_title">
+				PRODUCT
+			</p>
+			<form name="product" enctype="multipart/form-data">
+			<input type="hidden" name="t_no" value="${t_dto.getNo()}">
+			<input type="hidden" name="t_ori_photos" value="${t_dto.getPhotos()}">
+			<table class="boardForm">
+				<colgroup>
+					<col width="15%">
+					<col width="35%">
+					<col width="10%">
+					<col width="40%">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>제품 번호</th>
+						<td colspan="2"><input type="text" name="t_serial_no" class="input600"  value="${t_dto.getSerial_no()}"></td>
+					</tr>	
+					<tr>
+						<th>제품명</th>
+						<td colspan="2"><input type="text" name="t_name" class="input600" value="${t_dto.getName()}"></td>
+					</tr>	
+					<tr>
+						<th>상세설명</th>
+						<td colspan="3"><textarea name="t_content" class="textArea_H250" value="${t_dto.getContent()}"></textarea></td>
+					</tr>
+					<tr>
+						<th>우선순위</th>
+						<td>
+							<input type="radio" value="1" name="t_priority" class="middleCheck" /> 1&nbsp;&nbsp;  
+							<input type="radio" value="2" name="t_priority" class="middleCheck" /> 2&nbsp;&nbsp;  
+							<input type="radio" value="3" name="t_priority" class="middleCheck" /> 3
+						</td>
+					</tr>	
+					<tr>
+						<th>사이즈</th>
+						<td>
+							<select name="t_huge">
+								<option value="L">성인</option>
+								<option value="M">학생</option>
+								<option value="S">유아</option>
+							</select>	
+						</td>
+					</tr>	
+					<tr>
+						<th>가격</th>
+						<td colspan="2"><input type="text" name="t_price" class="input600" value="${t_dto.getPrice()}"></td>
+					</tr>	
+					<tr>
+						<th>등록일</th>
+						<td>${t_dto.getReg_date()}</td>
+					</tr>
+					<tr>
+>>>>>>> refs/remotes/origin/main
 						<th>등록자</th>
 						<td>${t_dto.getRegistrant()}</td>
 					</tr>

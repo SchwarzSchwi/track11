@@ -259,6 +259,10 @@
 									${dto.getTitle()}
 								</c:otherwise>
 							</c:choose>
+<<<<<<< HEAD
+=======
+							Convert between
+>>>>>>> refs/remotes/origin/main
 						</span><span class="noti_d">
 								${fn:substringAfter(dto.getReg_date(),20)}
 <!--						${fn:substring(dto.getReg_date(),2,12)}
@@ -297,6 +301,7 @@
 	.over p{
 		text-align:center;
 	}
+<<<<<<< HEAD
 	.over .p_name{
 		font-size:11px;
 		font-weight:bold; 
@@ -349,6 +354,32 @@
 				</div>
 			</div>
 			<div id="b_right">
+=======
+	.p_name{
+		font-size:11px;
+		font-weight:bold; 
+	}
+	.p_price{
+		font-size:10px;
+		color : blue;
+	}
+</style>	
+		<div id="b_center">
+			<p class="b_center_top"><img src="images/center_top.jpg"></p>
+			<div class="b_center_middle">
+				<c:forEach items="${t_productDtos}" var="dto">
+				<a href=""><img src="attach/product/${dto.getPhotos()}">
+					<div class="over">
+						<p class="p_name">${dto.getSerial_no()}</p>
+						<p class="p_price">${dto.getPrice()}
+						</p>
+					</div>
+				</a>
+				</c:forEach>
+	   		 </div>
+	   	</div>	 
+		<div id="b_right">
+>>>>>>> refs/remotes/origin/main
 			<img src="images/center_right.jpg">
 		</div>
 		<div id="b_bottom_2">

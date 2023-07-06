@@ -90,7 +90,11 @@ public class ProductDto {
 
 
 	//목록
+<<<<<<< HEAD
 	public ProductDto(String no, String photos, String serial_no, String name, String price, String views) {
+=======
+	public ProductDto(String no, String photos, String serial_no, String name, String price, int views) {
+>>>>>>> refs/remotes/origin/main
 		this.no = no;
 		this.photos = photos;
 		this.serial_no = serial_no;
@@ -102,6 +106,7 @@ public class ProductDto {
 
 	
 	//수정
+<<<<<<< HEAD
 	public ProductDto(String no, String serial_no, String name, String photos,  String content, String priority,
 			String huge, String price) {
 		this.no = no;
@@ -119,6 +124,25 @@ public class ProductDto {
 		this.no = no;
 		this.photos = photos;
 		this.name = name;
+=======
+	public ProductDto(String no, String photos, String serial_no, String content, String name, String priority,
+			String huge, String price) {
+		this.no = no;
+		this.photos = photos;
+		this.serial_no = serial_no;
+		this.content = content;
+		this.name = name;
+		this.priority = priority;
+		this.huge = huge;
+		this.price = price;
+	}
+
+
+	public ProductDto(String no, String photos, String serial_no, String price) {
+		this.no = no;
+		this.photos = photos;
+		this.serial_no = serial_no;
+>>>>>>> refs/remotes/origin/main
 		this.price = price;
 	}
 	

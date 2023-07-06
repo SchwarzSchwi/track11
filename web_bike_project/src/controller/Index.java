@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import dao.NoticeDao;
 import dao.ProductDao;
 import dto.NoticeDto;
+<<<<<<< HEAD
 import dto.ProductDto;
+=======
+>>>>>>> refs/remotes/origin/main
 
 /**
  * Servlet implementation class Index
@@ -34,6 +37,7 @@ public class Index extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		ProductDao productDao = new ProductDao();
 		ArrayList<ProductDto> productDtos = productDao.getProductIndex();
 		request.setAttribute("t_productDtos", productDtos);
@@ -43,6 +47,14 @@ public class Index extends HttpServlet {
 		ArrayList<NoticeDto> noticeDtos = noticeDao.getNoticeListPage("n.title", "", 1, 7);
 		request.setAttribute("t_noticeDtos", noticeDtos);
 		
+=======
+		ProductDao dao = new ProductDao();
+		NoticeDao noticeDao = new NoticeDao();
+		
+		ArrayList<NoticeDto> noticeDtos = noticeDao.getNoticeListPage("n.title", "", 1, 7);
+		
+		request.setAttribute("t_noticeDtos", noticeDtos);
+>>>>>>> refs/remotes/origin/main
 		request.setCharacterEncoding("utf-8");
 		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		rd.forward(request, response);
