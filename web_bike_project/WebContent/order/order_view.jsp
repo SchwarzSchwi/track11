@@ -4,9 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
 <script type="text/javascript">
 	function goCancel(){
-		workManage.method="post";
-		workManage.action="Order";
-		workManage.submit();
+		if(confirm("주문 취소하시겠습니까?")){
+			workManage.method="post";
+			workManage.action="Order";
+			workManage.submit();
+		}	
 	}
 </script>
 		<div id="b_left">
@@ -47,6 +49,26 @@
 				  <th>Name</th>
 				  <td>${t_dto.getName()}</td>
 				</tr>
+<style>
+	.viewImg{
+		width:500px;
+		height:300px;
+	}
+	.imgDiv{
+		width:500px;
+		height:300px;	
+		padding: 10px;
+		margin: 10px 90px;			
+		border:1px solid gray;
+	}
+</style>					
+					<tr>
+						<td colspan="4">
+							<div class="imgDiv">
+								<img src="attach/product/${t_dto.getPhotos()} "class="viewImg">
+							</div>
+						</td>
+					</tr>
 				<tr>
 				  <th>Payment</th>
 				  <td>${t_dto.getPayment()}</td>
@@ -75,8 +97,10 @@
 			</table>
 			</form>
 			<div class="buttonGroup">
-			<c:if test="${sessionLevel eq 'member'}">
+			<c:if test="${sessionLevel eq 'member'}">'
+			<c:if test="${t_dto.getNow_status() eq '입금확인중' || t_dto.getNow_status() eq '배송준비중'}">
 				<a href="javascript:goCancel()" class="butt">Cancel</a>
+			</c:if>	
 				<a href="Order" class="butt">List</a>
 			</c:if>	
 			</div>	

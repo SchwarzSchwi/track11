@@ -36,12 +36,14 @@ public class OrderDao {
 	public OrderDto getOrderView(String order_no) {
 		OrderDto dto = null;
 		String query = "select n.order_no,n.now_status,n.serial_no,n.consumer_id,\r\n" + 
-				"m.name,n.payment,to_char(n.price,'999,999,999')as price,\r\n" + 
-				"to_char(n.purchase_date,'yyyy-MM-dd hh24:mi:ss')as purchase_date,\r\n" + 
-				"n.post_no,n.address,n.detail_address\r\n" + 
-				"from bike_최선우_productsale n, bike_최선우_member m \r\n" + 
+				"m.name,l.photos,n.payment,to_char(n.price,'999,999,999')as price, \r\n" + 
+				"to_char(n.purchase_date,'yyyy-MM-dd hh24:mi:ss')as purchase_date, \r\n" + 
+				"n.post_no,n.address,n.detail_address \r\n" + 
+				"from bike_최선우_productsale n, bike_최선우_member m, bike_최선우_product l\r\n" + 
 				"where n.consumer_id = m.id\r\n" + 
+				"and n.serial_no = l.serial_no\r\n" + 
 				"and order_no = '"+order_no+"'";
+		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -51,6 +53,7 @@ public class OrderDao {
 				String serial_no = rs.getString("serial_no");
 				String consumer_id = rs.getString("consumer_id");
 				String name			= rs.getString("name");
+				String photos		= rs.getString("photos");
 				String payment = rs.getString("payment");
 				String price = rs.getString("price");
 				String purchase_date   = rs.getString("purchase_date");
@@ -58,7 +61,7 @@ public class OrderDao {
 				String address = rs.getString("address");
 				String detail_address = rs.getString("detail_address");
 				
-				dto = new OrderDto(order_no, now_status, serial_no, consumer_id, name, payment,
+				dto = new OrderDto(order_no, now_status, serial_no, consumer_id, name, photos, payment,
 						price, purchase_date, post_no, address, detail_address);
 			}
 		}catch(Exception e) {

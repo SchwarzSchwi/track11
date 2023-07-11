@@ -2,7 +2,7 @@ package dto;
 
 public class ManageDto {
 	private String order_no, now_status, serial_no, 
-	consumer_id, name, payment, price, purchase_date, post_no, address, detail_address;
+	consumer_id, name, photos, payment, price, purchase_date, post_no, address, detail_address;
 	
 	
 	//목록조회
@@ -16,13 +16,14 @@ public class ManageDto {
 		this.price = price;
 	}
 	//상세보기
-	public ManageDto(String order_no, String now_status, String serial_no, String consumer_id, String name, String payment, String price,
+	public ManageDto(String order_no, String now_status, String serial_no, String consumer_id, String name, String photos, String payment, String price,
 			String purchase_date, String post_no, String address, String detail_address) {
 		this.order_no = order_no;
 		this.now_status = now_status;
 		this.serial_no = serial_no;
 		this.consumer_id = consumer_id;
 		this.name        = name;
+		this.photos		 = photos;	
 		this.payment = payment;
 		this.price =price;
 		this.purchase_date = purchase_date;
@@ -53,6 +54,9 @@ public class ManageDto {
 	}
 	public String getName() {
 		return name;
+	}
+	public String getPhotos() {
+		return photos;
 	}
 
 	public String getPayment() {
