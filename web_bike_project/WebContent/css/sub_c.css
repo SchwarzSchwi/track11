@@ -455,6 +455,16 @@
 	background: #b4b4b0;
 	color: #fff;
 }	
+.complet {
+	background:#8893ab; 
+	color:#fff;
+	padding:5px 8px;
+}
+.waiting {
+	background:#0489B1; 
+	color:#fff;
+	padding:5px 8px;
+}
 	
 	
 	

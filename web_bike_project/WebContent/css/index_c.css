@@ -127,7 +127,7 @@
         animation-name: lineani;
         animation-duration: 1s;
 		animation-delay: 1s;
-		animation-iteration-count: infinite(°è¼Ó¹Ýº¹);  ¶Ç´Â animation-iteration-count: 1;
+		animation-iteration-count: infinite(ï¿½ï¿½Ó¹Ýºï¿½);  ï¿½Ç´ï¿½ animation-iteration-count: 1;
 */			
 		}	
 		@keyframes lineani{
@@ -356,3 +356,13 @@
 			content:"";
 			clear:both;
 		}
+.complet {
+	background:#8893ab; 
+	color:#fff;
+	padding:5px 8px;
+}
+.waiting {
+	background:#0489B1; 
+	color:#fff;
+	padding:5px 8px;
+}

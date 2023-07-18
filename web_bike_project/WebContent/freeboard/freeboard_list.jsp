@@ -5,31 +5,31 @@
 <script type="text/javascript">
 	
 	function goSearch(){
-		qa.method="post";
-		qa.action="Qna";
-		qa.submit();
+		fb.method="post";
+		fb.action="Freeboard";
+		fb.submit();
 	}
 	function goPage(pageNumber){
-		qa.t_nowPage.value = pageNumber;
-		qa.method="post";
-		qa.action="Qna";
-		qa.submit();
+		fb.t_nowPage.value = pageNumber;
+		fb.method="post";
+		fb.action="Freeboard";
+		fb.submit();
 	}
 	function goWriteForm(){
-		qna.t_gubun.value="writeForm";
-		qna.method="post";
-		qna.action="Qna";
-		qna.submit();
+		freeboard.t_gubun.value="writeForm";
+		freeboard.method="post";
+		freeboard.action="Freeboard";
+		freeboard.submit();
 	}
 	function goView(no){
-		qna.t_gubun.value="view";
-		qna.t_no.value = no;
-		qna.method="post";
-		qna.action="Qna";
-		qna.submit();	
+		freeboard.t_gubun.value="view";
+		freeboard.t_no.value = no;
+		freeboard.method="post";
+		freeboard.action="Freeboard";
+		freeboard.submit();	
 	}
 </script>
-<form name="qna">
+<form name="freeboard">
 	<input type="hidden" name="t_gubun">
 	<input type="hidden" name="t_no">
 </form>
@@ -39,17 +39,17 @@
 		
 		<div id="b_right">
 			<p class="n_title">
-				QNA
+				Freeboard
 			</p>
 			<div class="record_group record_group_left">
 				<p><i class="fa-solid fa-bell"></i> 총게시글<span>${t_totalCount}</span>건</p>
 			</div>	
-			<form name="qa">	
+			<form name="fb">	
 			<input type="hidden" name="t_nowPage">	
 			<p class="select_box select_box_right">
 				<select name="t_select" class="sel_box">
-					<option value="n.q_title" <c:if test="${t_select eq 'q_title'}">selected</c:if>>Title</option>
-					<option value="n.q_content"  <c:if test="${t_select eq 'q_content'}">selected</c:if>>Content</option>
+					<option value="n.title" <c:if test="${t_select eq 'title'}">selected</c:if>>Title</option>
+					<option value="n.content"  <c:if test="${t_select eq 'content'}">selected</c:if>>Content</option>
 				</select>
 				<input type="text" name="t_search" value="${t_search}" class="sel_text">
 
@@ -64,17 +64,15 @@
 					<col width="24%">
 					<col width="10%">
 					<col width="10%">
-					<col width="10%">
 				</colgroup>
 				<thead>
 					<tr>
 						<th>No</th>
-						<th>Photos</th>
-						<th>Q_title</th>
-						<th>Q_date</th>
-						<th>Q_name</th>
-						<th>Answer</th>
-						<th>Views</th>
+						<th>Attach</th>
+						<th>Title</th>
+						<th>Reg_date</th>
+						<th>Name</th>
+						<th>Hit</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -87,18 +85,14 @@
 							<c:set var="number" value="${number-1}"></c:set>
 						</td>
 						<td>
-						<c:if test="${not empty dto.getPhotos()}">						
+						<c:if test="${not empty dto.getAttach()}">						
 							<img src="images/clip.png">
 						</c:if>
 						</td>
-						<td class="t_left"><a href="javascript:goView('${dto.getNo()}')">${dto.getQ_title()}</a></td>
-						<td>${dto.getQ_date()}</td>
+						<td class="t_left"><a href="javascript:goView('${dto.getNo()}')">${dto.getTitle()}</a></td>
+						<td>${dto.getReg_date()}</td>
 						<td>${dto.getName()}
-						<td>
-							<c:if test="${dto.getA_content() eq null}"><span style="background:#0489B1; color:#fff;padding:5px 8px;" class="waiting">답변대기</span></c:if>
-							<c:if test="${dto.getA_content() ne null}"><span style="background:#8893ab; color:#fff;padding:5px 8px;" class="complet">답변완료</span></c:if>
-						</td>
-						<td>${dto.getViews()}</td>
+						<td>${dto.getHit()}</td>
 					</tr>	
 				</c:forEach>	
 				</tbody>
@@ -106,7 +100,7 @@
 			
 			<div class="paging">
 				${t_paging}
-				<c:if test="${sessionLevel eq 'member'}">
+				<c:if test="${sessionLevel eq 'member' || sessionLevel eq 'admin'}">
 				<a href="javascript:goWriteForm()" class="write">글쓰기</a>
 				</c:if>			
 <!-- 			

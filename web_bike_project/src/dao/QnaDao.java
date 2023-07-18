@@ -84,8 +84,8 @@ public class QnaDao {
 				"    q_content = '"+dto.getQ_content()+"',\r\n" + 
 				"    q_date = to_date('"+dto.getQ_date()+"','yyyy-MM-dd hh24:mi:ss'),\r\n" + 
 				"    q_id = '"+dto.getQ_id()+"' \r\n" + 
+				"    photos = '"+dto.getPhotos()+"' \r\n" + 
 				"where no = '"+dto.getNo()+"'";
-		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -140,12 +140,11 @@ public class QnaDao {
 	//상세보기
 	public QnaDto getQnaView(String no) {
 		QnaDto dto = null;
-		String query ="select n.no, n.q_title, n.q_content, to_char(n.q_date,'yyyy-mm-dd') as q_date, n.q_id, m.name,\r\n" + 
+		String query ="select n.no, n.q_title, n.q_content, to_char(n.q_date,'yyyy-mm-dd') as q_date, n.q_id, m.name, n.photos,\r\n" + 
 				"n.a_title, n.a_content, to_char(n.a_date,'yyyy-mm-dd') as a_date, n.a_id, n.views\r\n" + 
 				"from bike_최선우_qna n, bike_최선우_member m\r\n" + 
 				"where n.no = '"+no+"'\r\n" +
 				"and n.q_id = m.id"; 
-		System.out.println(query);
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -156,13 +155,14 @@ public class QnaDao {
 				String q_date = rs.getString("q_date");
 				String q_id = rs.getString("q_id");
 				String name = rs.getString("name");
+				String photos = rs.getString("photos");
 				String a_title      = rs.getString("a_title");
 				String a_content      = rs.getString("a_content");
 				String a_date      = rs.getString("a_date");
 				String a_id      = rs.getString("a_id");
 				int views	= rs.getInt("views");
 				
-				dto  = new QnaDto(no, q_title, q_content, q_date, q_id, name, a_title, a_content, a_date, a_id, views);
+				dto  = new QnaDto(no, q_title, q_content, q_date, q_id, name, photos, a_title, a_content, a_date, a_id, views);
 			}
 		}catch(Exception e) {
 			System.out.println("getQnaView()오류:"+query);
@@ -198,9 +198,9 @@ public class QnaDao {
 	public int qnaSave(QnaDto dto){
 		int result = 0;
 		String query="insert into bike_최선우_qna\r\n" + 
-				"(no,q_title,q_content,q_date,q_id,views)\r\n" + 
+				"(no,q_title,q_content,q_date,q_id, photos, views)\r\n" + 
 				"values\r\n" + 
-				"('"+dto.getNo()+"','"+dto.getQ_title()+"','"+dto.getQ_content()+"',to_date('"+dto.getQ_date()+"','yyyy-mm-dd hh24:mi:ss'),'"+dto.getQ_id()+"','"+dto.getViews()+"')";
+				"('"+dto.getNo()+"','"+dto.getQ_title()+"','"+dto.getQ_content()+"',to_date('"+dto.getQ_date()+"','yyyy-mm-dd hh24:mi:ss'),'"+dto.getQ_id()+"','"+dto.getPhotos()+"','"+dto.getViews()+"')";
 		try {
 			con = DBConnection.getConnection();
 			ps  = con.prepareStatement(query);
@@ -222,11 +222,12 @@ public class QnaDao {
 				"(select rownum as rnum, tbl.* \r\n" + 
 				"from \r\n" + 
 				"(\r\n" + 
-				"select n.no, n.q_title, n.q_content, to_char(n.q_date,'yyyy-mm-dd') as q_date, n.q_id, m.name,\r\n" + 
+				"select n.no, n.q_title, n.q_content, to_char(n.q_date,'yyyy-mm-dd') as q_date, n.q_id, m.name, n.photos,\r\n" + 
 				"n.a_title, n.a_content, to_char(n.a_date,'yyyy-mm-dd') as a_date, n.a_id, n.views\r\n" + 
 				"from bike_최선우_qna n, bike_최선우_member m\r\n" + 
 				"where "+select+" like '%"+search+"%'\r\n" + 
-				"and n.q_id = m.id\r\n" + 
+				"and n.q_id = m.id\r\n" +
+				"order by n.q_date desc\r\n" +
 				") tbl)\r\n" + 
 				"where rnum >="+start+" and rnum <="+end+"";
 		try {
@@ -240,13 +241,14 @@ public class QnaDao {
 				String q_date = rs.getString("q_date");
 				String q_id = rs.getString("q_id");
 				String name = rs.getString("name");
+				String photos = rs.getNString("photos");
 				String a_title      = rs.getString("a_title");
 				String a_content      = rs.getString("a_content");
 				String a_date      = rs.getString("a_date");
 				String a_id      = rs.getString("a_id");
 				int views	= rs.getInt("views");
 				
-				QnaDto  dto  = new QnaDto(no, q_title, q_content, q_date, q_id, name, a_title, a_content, a_date, a_id, views);
+				QnaDto  dto  = new QnaDto(no, q_title, q_content, q_date, q_id, name, photos, a_title, a_content, a_date, a_id, views);
 				dtos.add(dto);
 			}
 		}catch(Exception e) {

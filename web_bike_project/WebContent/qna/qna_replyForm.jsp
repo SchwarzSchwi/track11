@@ -35,16 +35,28 @@
 				</colgroup>
 				<tbody>
 					<tr>
+						<th>QestionTitle</th>
+ 						<td colspan="2">${t_dto.getQ_title()}</td>
+						<td> <i class="far fa-eye"></i>${t_dto.getViews()}</td>
+					</tr>	
+					<tr>
+						<th>QestionContent</th>
+						<td colspan="3"><textarea readonly cols="80" rows="20">${t_dto.getQ_content()}</textarea></td>
+					</tr>	
+					<tr>
+						<th>QestionWriter</th>
+						<td>${t_dto.getName()}</td>
+						<th>QuestionDate</th>
+						<td>${t_dto.getQ_date()}</td>
+					</tr>
+					<tr>
 						<th>Reply</th>
 						<td colspan="3"><textarea name="a_content" cols="80" rows="20"></textarea></td>
 					</tr>	
 					<tr>
 						<th>Writer</th>
-						<td>${sessionId}</td>
-						<th>AnswerDate</th>
-						<td>${t_today}</td>
+						<td colspan="3">${sessionName}</td>
 					</tr>	
-
 				</tbody>
 			</table>
 			</form>

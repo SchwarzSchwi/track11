@@ -8,7 +8,7 @@
 	
 	if(savePath.equals("notice")) savePath = CommonUtil.getFile_dir_notice();
 	else if(savePath.equals("news")) savePath = CommonUtil.getFile_dir_news();
-	
+	else if(savePath.equals("freeboard")) savePath = CommonUtil.getFile_dir_freeboard();
 
  	
     String orgfilename = fileName ;

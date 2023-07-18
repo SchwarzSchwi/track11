@@ -25,6 +25,16 @@ public class CommonUtil {
 			String productDir ="C:/Users/Choi/Desktop/it/work_project/track11/web_bike_project/WebContent/attach/product";
 			return productDir;
 		}
+	//qna 첨부경로
+			public static String getFile_dir_qna() {
+				String qnaDir ="C:/Users/Choi/Desktop/it/work_project/track11/web_bike_project/WebContent/attach/qna";
+				return qnaDir;
+			}	
+	//freeboard 첨부경로		
+			public static String getFile_dir_freeboard() {
+				String freeboard = "C:/Users/Choi/Desktop/it/work_project/track11/web_bike_project/WebContent/attach/freeboard";
+				return freeboard;
+			}
 	
 //오늘날짜
 	public static String getToday(){

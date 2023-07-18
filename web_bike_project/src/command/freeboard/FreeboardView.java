@@ -1,23 +1,22 @@
-package command.qna;
+package command.freeboard;
 
 import javax.servlet.http.HttpServletRequest;
 
 import common.CommonExecute;
-import dao.QnaDao;
-import dto.QnaDto;
+import dao.FreeboardDao;
+import dto.FreeboardDto;
 
-public class QnaView implements CommonExecute {
+public class FreeboardView implements CommonExecute {
 
 	@Override
 	public void execute(HttpServletRequest request) {
-		QnaDao dao = new QnaDao();
+		FreeboardDao dao = new FreeboardDao();
 		String no = request.getParameter("t_no");
-		dao.setViewsCount(no);
-		QnaDto dto = dao.getQnaView(no);
+		dao.setHitCount(no);
+		FreeboardDto dto = dao.getFreeboardView(no);
 		
 		request.setAttribute("t_dto", dto);
 		
 	}
-
 
 }
