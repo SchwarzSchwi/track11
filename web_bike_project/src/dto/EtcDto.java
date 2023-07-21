@@ -1,36 +1,68 @@
 package dto;
 
 public class EtcDto {
-	private int entNo, groupNo, groupOrder, depth;
-	String title, regDate, updateDate, regId;
+	private int entno, groupno, grouporder, depth;
+	String title, regdate, updatedate, regid;
 	
 	
-	public int getEntNo() {
-		return entNo;
+	public int getEntno() {
+		return entno;
 	}
-	public int getGroupNo() {
-		return groupNo;
+
+	
+	public int getGroupno() {
+		return groupno;
 	}
-	public int getGroupOrder() {
-		return groupOrder;
+
+
+
+	public int getGrouporder() {
+		return grouporder;
 	}
+
+
+
 	public int getDepth() {
 		return depth;
 	}
+
+
+
+
+
+
 	public String getTitle() {
 		return title;
 	}
-	public String getRegDate() {
-		return regDate;
+
+
+
+	public String getRegdate() {
+		return regdate;
 	}
-	public String getUpdateDate() {
-		return updateDate;
+
+
+
+	public String getUpdatedate() {
+		return updatedate;
 	}
-	public String getRegId() {
-		return regId;
+
+
+
+	public String getRegid() {
+		return regid;
 	}
-	
-	
-	
-	
+
+
+
+	public EtcDto(int entno, int groupno, int grouporder, int depth, String title, String regdate, String regid) {
+		super();
+		this.entno = entno;
+		this.groupno = groupno;
+		this.grouporder = grouporder;
+		this.depth = depth;
+		this.title = title;
+		this.regdate = regdate;
+		this.regid = regid;
+	}
 }
