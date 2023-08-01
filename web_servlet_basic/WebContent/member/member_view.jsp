@@ -7,7 +7,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>TRACK11 홍길동</title>
+	<title>TRACK11 최선우</title>
 	<link href="css/common.css" rel="stylesheet">
 	<link href="css/layout.css" rel="stylesheet" >	
 	<script type="text/javascript">
@@ -33,7 +33,7 @@
 	<div class="container">
 	
 		<div class="leftmargin">
-			<img src="images/jsl_logo.png"><h1>TRACK11 홍길동 회원관리</h1>
+			<img src="images/jsl_logo.png"><h1>TRACK11 최선우 회원관리</h1>
 		</div>		
 		<div class="write_wrap">
 		
@@ -65,7 +65,7 @@
 						<tr>
 							<th>가입일</th>
 							<td class="th_left">
-								<%=dto.getReg_date() %>
+								<%=dto.getReg_date()%>
 							</td>
 						</tr>
 					</tbody>

@@ -65,7 +65,7 @@ public class MemberDao {
 //로그인
 	public MemberDto getLoginName(String id, String password) {
 		MemberDto dto = null;
-		String query ="select name, memberLevel\r\n" + 
+		String query ="select name, sLevel\r\n" + 
 				" from bike_최선우_member\r\n" + 
 				" where id ='"+id+"'\r\n" + 
 				" and password ='"+password+"'"+
@@ -76,8 +76,8 @@ public class MemberDao {
 			rs  = ps.executeQuery();
 			if(rs.next()) {
 				String name = rs.getString("name");
-				String memberLevel = rs.getString("memberLevel");
-				dto = new MemberDto(name,memberLevel);
+				String sLevel = rs.getString("sLevel");
+				dto = new MemberDto(name,sLevel);
 				
 			}
 		}catch(Exception e) {

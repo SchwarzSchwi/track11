@@ -40,7 +40,7 @@ public class MemberLogin implements CommonExecute {
 			HttpSession session = request.getSession();
 			session.setAttribute("sessionId", id);
 			session.setAttribute("sessionName", dto.getName());
-			session.setAttribute("sessionLevel", dto.getMemberLevel());
+			session.setAttribute("sLevel", dto.getMemberLevel());
 			session.setMaxInactiveInterval(60*60*3);
 		}
 		request.setAttribute("t_msg", msg);

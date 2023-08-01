@@ -1,37 +1,61 @@
 package command.etc;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import common.CommonExecute;
 import common.CommonUtil;
 import dao.EtcDao;
 import dto.EtcDto;
 
-public class EtcReply implements CommonExecute {
+/**
+ * Servlet implementation class EtcReply
+ */
+@WebServlet("/EtcReply")
+public class EtcReply extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public EtcReply() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	@Override
-	public void execute(HttpServletRequest request) {
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("utf-8");
+		response.setCharacterEncoding("utf-8");
+		PrintWriter out = response.getWriter();
+		HttpSession ss = request.getSession();
 		EtcDao dao = new EtcDao();
 		
-		String msg = "등록되었습니다!";
-		
-		int entno = dao.getMaxNo();
-		int groupno = entno;
-		int grouporder = 0;
-		int depth = 0;
-		String regdate = CommonUtil.getTodayTime();
-		HttpSession session = request.getSession();
-		String title = request.getParameter("t_reply");
-		String regid = (String)session.getAttribute("sessionId");
-		String name = (String)session.getAttribute("sessionName");
-		int view = 0;
-	
-		EtcDto dto = new EtcDto(entno, groupno, grouporder, depth, title, regdate, regid);
-		int result = dao.etcSave(dto);
-		if(result != 1) msg = "등록실패~";
-		
-		request.setAttribute("t_msg", msg );
-		request.setAttribute("t_url","Etc");
+		String no = dao.getMaxNo();
+		String content = request.getParameter("t_content");
+		String reg_id = (String)ss.getAttribute("sessionId");
+		String reg_date = CommonUtil.getTodayTime();
+		String reply = request.getParameter("t_no");
+		EtcDto dto = new EtcDto(no, content, reg_id, "", reg_date, null, null, reply);
+		dao.insertDB(dto);
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
 }

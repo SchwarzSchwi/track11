@@ -1,6 +1,6 @@
 package common;
 
-import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -35,7 +35,47 @@ public class CommonUtil {
 				String freeboard = "C:/Users/Choi/Desktop/it/work_project/track11/web_bike_project/WebContent/attach/freeboard";
 				return freeboard;
 			}
-	
+			public static final int SEC = 60;
+			public static final int MIN = 60;
+			public static final int HOUR = 24;
+			public static final int DAY = 30;
+			public static final int MONTH = 12;
+
+			public static String convertDate(String date) {
+				String result = null;
+				
+				SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date date_date = new Date();
+				try {
+					date_date = fm.parse(date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				long curTime = System.currentTimeMillis();
+				long regTime = date_date.getTime();
+				long diffTime = (curTime - regTime) / 1000;
+
+				if (diffTime < CommonUtil.SEC) {
+					// sec
+					result = "방금 전";
+				} else if ((diffTime /= CommonUtil.SEC) < CommonUtil.MIN) {
+					// min
+					result = diffTime + "분 전";
+				} else if ((diffTime /= CommonUtil.MIN) < CommonUtil.HOUR) {
+					// hour
+					result = (diffTime) + "시간 전";
+				} else if ((diffTime /= CommonUtil.HOUR) < CommonUtil.DAY) {
+					// day
+					result = (diffTime) + "일 전";
+				} else if ((diffTime /= CommonUtil.DAY) < CommonUtil.MONTH) {
+					// day
+					result = (diffTime) + "달 전";
+				} else {
+					result = (diffTime) + "년 전";
+				}
+				return result;
+			}
 //오늘날짜
 	public static String getToday(){
 	   Date time = new Date();

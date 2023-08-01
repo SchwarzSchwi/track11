@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import command.etc.EtcList;
-import command.etc.EtcReply;
-import command.etc.EtcSave;
+import command.etc.List;
 import common.CommonExecute;
 
 /**
@@ -28,30 +26,29 @@ public class Etc extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    ///
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
-		String gubun = request.getParameter("t_gubun");
-		if(gubun == null) gubun = "list";
-		String viewPage="common_alert.jsp";
+		request.setAttribute("t_nowPage", "Etc");
 		
-		request.setAttribute("t_nowPage", "etc");
+		String requestPage = request.getParameter("t_requestPage");
+		if(requestPage==null) requestPage = (String)request.getAttribute("t_requestPage");
+		if(requestPage==null) requestPage = "list";
 		
-		//목록
-		if(gubun.equals("list")) {
-			CommonExecute etc = new EtcList();
+		String page = "alert.jsp";
+		
+		if(requestPage.equals("list")) {
+			CommonExecute etc = new List();
 			etc.execute(request);
-			viewPage ="etc/etc_list.jsp";
-		//댓글 달기
-		} else if (gubun.equals("reply")) {
-			CommonExecute etc = new EtcReply();
-			etc.execute(request);
+			page = "etc/etc_list.jsp";
 		}
-		RequestDispatcher rd = request.getRequestDispatcher(viewPage);
-		rd.forward(request, response);	
+		
+		RequestDispatcher rd = request.getRequestDispatcher(page);
+		rd.forward(request, response);
 	}
 
 	/**

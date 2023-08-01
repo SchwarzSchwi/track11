@@ -1,10 +1,10 @@
 <%@ page pageEncoding="UTF-8"%>
 <%
-	String sessionId    = (String)session.getAttribute("sessionId");
+	String sId    = (String)session.getAttribute("sId");
 	String sessionName  = (String)session.getAttribute("sessionName");
-	String sessionLevel = (String)session.getAttribute("sessionLevel");
+	int sLevel = (int)session.getAttribute("sLevel");
 
-	if(sessionId == null)    sessionId ="";
+	if(sId == null)    sId ="";
 	if(sessionName == null)  sessionName ="";
-	if(sessionLevel == null) sessionLevel ="";	
+	if(sLevel == 0) sLevel = 0;	
 %>
