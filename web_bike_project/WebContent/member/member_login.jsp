@@ -6,8 +6,7 @@
 		mem.t_pw.focus();
 	}
 	function memberLogin(){
-		if(checkValue(mem.t_id,"아이디 입력")) return;
-		if(checkValue(mem.t_pw,"비밀번호 입력")) return;
+		
 		mem.method="post";
 		mem.action="Member?t_gubun=memberLoginCheck";
 		mem.submit();
