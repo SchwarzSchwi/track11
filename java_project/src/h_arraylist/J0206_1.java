@@ -13,6 +13,7 @@ public class J0206_1 {
 		arr.add("배정열");
 		arr.add("신민철");
 		arr.add(1, "안증환");
+		arr.add("이성계");
 		arr.set(0, "임종승");
 		arr.remove(0);
 		for(int k=0; k<arr.size(); k++) {

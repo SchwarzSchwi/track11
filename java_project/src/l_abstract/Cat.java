@@ -1,4 +1,4 @@
-package l_추상;
+package l_abstract;
 
 public class Cat extends Animal{
 	String getHeight() {

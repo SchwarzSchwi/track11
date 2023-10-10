@@ -1,4 +1,4 @@
-package l_추상;
+package l_abstract;
 
 public class J0210_main {
 
