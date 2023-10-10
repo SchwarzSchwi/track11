@@ -1,4 +1,4 @@
-package e_배열;
+package e_array;
 
 import java.util.Scanner;
 

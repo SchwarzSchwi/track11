@@ -1,8 +1,9 @@
-package e_배열;
+package e_array;
+
 
 public class J0118_1 {
-
 	public static void main(String[] args) {
+		
 		// TODO Auto-generated method stub
 		String[] aa = {"홍길동", "대전", "25"};
 		String[][] str={
